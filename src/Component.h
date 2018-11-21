@@ -1,9 +1,9 @@
 #pragma once
 #include <SDL.h>
-#include "AppObject.h"
 #include <fmod.hpp>
-#include "errcheck.h"
+
 #define SCALE_FACTOR 0.01f
+class AppObject;
 
 class Component
 {
@@ -11,9 +11,39 @@ public:
 	virtual bool init(AppObject * obj) = 0;
 	virtual void render(SDL_Renderer * r, AppObject * obj) =0;
 	virtual void tick(AppObject * obj) = 0;
-	virtual bool handleInput(SDL_Event & e) = 0;
+	virtual bool handleInput(SDL_Event & e, AppObject * obj) = 0;
 	
 };
+class DragMouseComponent: public Component
+{
+public:
+	DragMouseComponent() {};
+	virtual ~DragMouseComponent() {};
+	virtual bool init(AppObject * obj);
+	virtual void render(SDL_Renderer * r, AppObject * obj) {}
+	virtual void tick(AppObject * obj);
+	virtual bool handleInput(SDL_Event & e, AppObject * obj);
+
+private:
+
+};
+
+class RectRenderComponent:public Component
+{
+public:
+	RectRenderComponent(SDL_Color color) :_color(color) {};
+	virtual ~RectRenderComponent() {};
+	virtual bool init(AppObject * obj) {};
+	virtual void render(SDL_Renderer * r, AppObject * obj);
+	virtual void tick(AppObject * obj) {};
+	virtual bool handleInput(SDL_Event & e, AppObject * obj);
+
+private:
+	SDL_Color _color;
+
+};
+
+
 
 class SoundComponent : public Component
 {
@@ -23,46 +53,19 @@ public:
 		systemSound_ = sys;
 	}
 
+	virtual ~SoundComponent() { sound_->release(); }
+
 	// Heredado vía Component
-	virtual bool init(AppObject * obj) {
-		ERRCHECK(systemSound_->createSound(file_, FMOD_3D, 0, &sound_));
-		ERRCHECK(systemSound_->playSound(sound_, 0, true, &channelSound_));
-		changePosition3D(obj->getXMiddle(), 0, obj->getYMiddle());
+	virtual bool init(AppObject * obj);
+	virtual void render(SDL_Renderer * r, AppObject * obj) {}
+	virtual void tick(AppObject * obj);
+	
 
-		return true;
-	}
-	virtual void render(SDL_Renderer * r, AppObject * obj) 
-	{
-	}
+	virtual bool handleInput(SDL_Event & e, AppObject * obj);
 
-	virtual void tick(AppObject * obj) 
-	{
-		changePosition3D(obj->getXMiddle(), 0, obj->getYMiddle());
-		
-	}
+	void changePosition3D(const int & x, const int & y, const int & z) ;
 
-	virtual bool handleInput(SDL_Event & e) 
-	{
-		return false;
-	}
-
-	void changePosition3D(const int & x, const int & y, const int & z) {
-		FMOD_VECTOR pos;
-		FMOD_VECTOR vel;
-		channelSound_->get3DAttributes(&pos, &vel);
-
-		pos.x = (x)* SCALE_FACTOR;
-		pos.y = (y)* SCALE_FACTOR;
-		pos.z = (z)* SCALE_FACTOR;
-
-		ERRCHECK(channelSound_->set3DAttributes(&pos, &vel));
-	};
-
-	void togglePause() {
-		bool b;
-		channelSound_->isPlaying(&b);
-		channelSound_->setPaused(!b);
-	}
+	void togglePause();
 private:
 	const char * file_;
 	FMOD::System* systemSound_;

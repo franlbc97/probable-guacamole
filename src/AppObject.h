@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include <list>
 class AppObject
 {
 public:
@@ -16,14 +17,22 @@ public:
 
 		selected_ = false;
 		canBeSelected_ = true;
+		componentList = std::list<Component*>();
 
 	};
 	~AppObject() {};
+	void addComponent(Component * c) {
+		componentList.push_back(c);
+		c->init(this);
+	}
 	virtual void render(SDL_Renderer * r) {
-		SDL_SetRenderDrawColor(r, color_.r, color_.g, color_.b, color_.a);
-		SDL_RenderFillRect(r, &rect_);
+		for (auto c : componentList)
+			c->render(r, this);
 	};
 	virtual void tick() {
+		for (auto c : componentList) {
+			c->tick(this);
+		}
 	};
 	virtual bool handleInput(SDL_Event & e) {
 		int x, y;
@@ -53,6 +62,9 @@ public:
 		default:
 			break;
 		}
+		for (auto c : componentList) {
+			c->handleInput(e,this);
+		}
 		return false;
 	}
 	bool pointInRect(int & x, int & y) {
@@ -69,14 +81,15 @@ public:
 	int getH() { return rect_.h; }
 	void setX(const int & x) { rect_.x = x; }
 	void setY(const int & y) { rect_.y = y; }
-	void setX(const int & w) { rect_.w = w; }
-	void setY(const int & h) { rect_.h = h; }
+	void setW(const int & w) { rect_.w = w; }
+	void setH(const int & h) { rect_.h = h; }
 
 	void setCanBeSeleceted(const bool & b) { canBeSelected_ = b; }
 	bool getCanBeSeleceted() { return canBeSelected_; }
+	SDL_Rect &getRect() { return rect_; };
 
 protected:
-	
+	std::list<Component*> componentList;
 	bool canBeSelected_;
 	bool selected_;
 	

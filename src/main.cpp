@@ -6,7 +6,6 @@
 #include <fmod_errors.h>
 #include <list>
 #include "AppObject.h"
-#include "errcheck.h"
 #include "Component.h"
 
 
@@ -17,74 +16,7 @@
 
 
 
-class SoundObject: public AppObject
-{
-public:
-	SoundObject(): AppObject() {};
-	void initSound(const char * file,FMOD::System * sys) {
-		ERRCHECK(sys->createSound(file, FMOD_3D | FMOD_LOOP_NORMAL, 0, &sound_));
-		ERRCHECK(sys->playSound(sound_, 0, false, &channelSound_));
-		//sound_->set3DMinMaxDistance(0.f, 500.f);
-		ERRCHECK(channelSound_->setVolume(1.0f));
-		ERRCHECK(channelSound_->setPaused(false));
-		
 
-
-	}
-	virtual ~SoundObject() {};
-	virtual void tick() {
-		FMOD_VECTOR pos;
-		FMOD_VECTOR vel;
-		channelSound_->get3DAttributes(&pos, &vel);
-		pos.x = (rect_.x + rect_.w/2)* SCALE_FACTOR;
-		pos.z = (rect_.y + rect_.h/ 2)* SCALE_FACTOR;
-		ERRCHECK(channelSound_->set3DAttributes(&pos, &vel));
-
-	};
-	virtual bool handleInput(SDL_Event & e) {
-		int x, y;
-		switch (e.type)
-		{
-		case SDL_MOUSEBUTTONDOWN:
-			
-			SDL_GetMouseState(&x, &y);
-			if (pointInRect(x, y)) {
-				if (e.button.button == SDL_BUTTON_LEFT)
-					selected_ = true;
-				if (e.button.button == SDL_BUTTON_RIGHT) {
-					bool p;
-					channelSound_->getPaused(&p);
-					channelSound_->setPaused(!p);
-				}
-				return true;
-			}
-			break;
-		case SDL_MOUSEMOTION:
-			if (selected_) {
-				rect_.x += e.motion.xrel;
-				rect_.y += e.motion.yrel;
-				return true;
-			}
-			break;
-		case SDL_MOUSEBUTTONUP:
-
-			if (selected_) {
-				selected_ = false;
-				return true;
-			}
-			break;
-		default:
-			break;
-		}
-		return false;
-	}
-	
-
-private:
-	FMOD::Channel* channelSound_;
-	FMOD::Sound* sound_;
-
-};
 
 
 class SDLApp
@@ -105,8 +37,8 @@ public:
 		SDL_RenderPresent(renderer_);
 
 
-		ERRCHECK(FMOD::System_Create(&soundSystem_));
-		ERRCHECK(soundSystem_->init(128, FMOD_INIT_NORMAL, 0));
+		FMOD::System_Create(&soundSystem_);
+		soundSystem_->init(128, FMOD_INIT_NORMAL, 0);
 		soundSystem_->set3DNumListeners(1);
 
 		FMOD_VECTOR pos;
@@ -166,16 +98,7 @@ public:
 				break;
 			}
 			if (e.type == SDL_DROPFILE) {
-				SoundObject * s = new SoundObject();
-				s->initSound(e.drop.file, soundSystem_);
 				
-				int x ,y;
-				SDL_GetMouseState(&x, &y);
-				s->setX(x);
-				s->setY(y);
-				
-				appObjects.push_back(s);
-				break;
 			}
 			std::list<AppObject*>::iterator it = appObjects.begin();
 			bool prosiga = true;
@@ -214,6 +137,10 @@ private:
 	SDL_Renderer * renderer_;
 	bool running_;
 	FMOD::System * soundSystem_;
+	Component * rectRender;
+	Component * dragRender;
+	Component * rectRender;
+	Component * rectRender;
 
 };
 

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ERRCHECK_H
+#define ERRCHECK_H
 #include <fmod.h>
 #include <fmod_errors.h>
 #include <iostream>
@@ -11,3 +13,5 @@ void ERRCHECK(FMOD_RESULT result) {
 		exit(-1);
 	}
 }
+#endif // !ERRCHECK_H
+
