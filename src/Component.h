@@ -33,7 +33,7 @@ class RectRenderComponent:public Component
 public:
 	RectRenderComponent(SDL_Color color) :_color(color) {};
 	virtual ~RectRenderComponent() {};
-	virtual bool init(AppObject * obj) {};
+	virtual bool init(AppObject * obj) { return true; };
 	virtual void render(SDL_Renderer * r, AppObject * obj);
 	virtual void tick(AppObject * obj) {};
 	virtual bool handleInput(SDL_Event & e, AppObject * obj);
@@ -57,13 +57,20 @@ public:
 
 	// Heredado vía Component
 	virtual bool init(AppObject * obj);
-	virtual void render(SDL_Renderer * r, AppObject * obj) {}
-	virtual void tick(AppObject * obj);
-	
+	virtual void render(SDL_Renderer * r, AppObject * obj);
+	virtual void tick(AppObject * obj);	
 
 	virtual bool handleInput(SDL_Event & e, AppObject * obj);
 
 	void changePosition3D(const int & x, const int & y, const int & z) ;
+
+	void setVolume(const float & nVol);
+
+	inline float getVolume() {
+		float vol;
+		channelSound_->getVolume(&vol);
+		return vol;
+	};
 
 	void togglePause();
 private:
@@ -72,3 +79,24 @@ private:
 	FMOD::Channel* channelSound_;
 	FMOD::Sound* sound_;
 };
+
+class ListenerComponent : public Component
+{
+public:
+	ListenerComponent(FMOD::System *sys): systemSound_(sys){};
+	~ListenerComponent() {};
+	
+	virtual bool init(AppObject * obj);
+	virtual void render(SDL_Renderer * r, AppObject * obj) {}
+	virtual void tick(AppObject * obj);
+	virtual bool handleInput(SDL_Event & e, AppObject * obj) { return false; }
+
+
+	void changePosition3D(const int & x, const int & y, const int & z);
+
+
+private:
+	FMOD::System* systemSound_;
+
+};
+

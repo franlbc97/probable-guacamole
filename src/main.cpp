@@ -12,6 +12,14 @@
 
 
 
+void cheka(FMOD_RESULT result) {
+	if (result != FMOD_OK) {
+		std::cout << FMOD_ErrorString(result) << std::endl;
+		// printf("FMOD error %d - %s", result, FMOD_ErrorString(result));
+		system("PAUSE");
+		exit(-1);
+	}
+}
 
 
 
@@ -38,39 +46,27 @@ public:
 
 
 		FMOD::System_Create(&soundSystem_);
-		soundSystem_->init(128, FMOD_INIT_NORMAL, 0);
-		soundSystem_->set3DNumListeners(1);
+		cheka(soundSystem_->init(128, FMOD_INIT_NORMAL, 0));
+		cheka(soundSystem_->set3DNumListeners(1));
 
-		FMOD_VECTOR pos;
-		FMOD_VECTOR vel;
-		FMOD_VECTOR foward;
-		FMOD_VECTOR up;
-		soundSystem_->get3DListenerAttributes(0, &pos, &vel, &foward, &up);
-		pos.x = (250 + 15)*SCALE_FACTOR;
-		pos.z = (250 + 15)*SCALE_FACTOR;
+		
 
-
-		soundSystem_->set3DListenerAttributes(0,&pos,&vel,&foward,&foward);
-		float doppler, dis, rolloff;
-		soundSystem_->get3DSettings(&doppler,&dis, &rolloff);
-		///*
-		//dis = 100.f;
-		//doppler = 500.f;
-		//rolloff = 500.f;
-		//*/
-
-		soundSystem_->set3DSettings(doppler,dis, rolloff);
 			
 
 
 	}
 
 	void initScene() {
-		appObjects.push_back(new AppObject());
-		std::list<AppObject*>::iterator it = appObjects.begin();
-		(*it)->setX(250 - 15);
-		(*it)->setY(250 - 15);
-		//(*it)->setCanBeSeleceted(false);
+		rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
+		AppObject * appObj = new AppObject();
+		appObjects.push_back(appObj);
+		
+		appObj->setX(250 - 15);
+		appObj->setY(250 - 15);
+		appObj->addComponent(rectRender);
+		
+		ListenerComponent * lc = new ListenerComponent(soundSystem_);
+		appObj->addComponent(lc);
 
 
 
@@ -98,7 +94,16 @@ public:
 				break;
 			}
 			if (e.type == SDL_DROPFILE) {
-				
+				AppObject * appobj = new AppObject();
+				int x, y;
+				SDL_GetMouseState(&x, &y);
+				appobj->setX(x);
+				appobj->setY(y);
+				appobj->addComponent(rectRender);
+				SoundComponent * comp = new SoundComponent(soundSystem_, e.drop.file);
+				appObjects.push_back(appobj);
+				appobj->addComponent(comp);
+				continue;
 			}
 			std::list<AppObject*>::iterator it = appObjects.begin();
 			bool prosiga = true;
@@ -113,9 +118,9 @@ public:
 	}
 
 	void tick(){
+		soundSystem_->update();
 		for (auto it : appObjects)
 			it->tick();
-		soundSystem_->update();
 	}
 	void render() {
 
@@ -139,8 +144,8 @@ private:
 	FMOD::System * soundSystem_;
 	Component * rectRender;
 	Component * dragRender;
-	Component * rectRender;
-	Component * rectRender;
+	Component * soundComponent;
+	//Component * rectRender;
 
 };
 

@@ -22,6 +22,7 @@ public:
 	};
 	~AppObject() {};
 	void addComponent(Component * c) {
+
 		componentList.push_back(c);
 		c->init(this);
 	}
@@ -39,10 +40,12 @@ public:
 		switch (e.type)
 		{
 		case SDL_MOUSEBUTTONDOWN:
-			SDL_GetMouseState(&x, &y);
-			if (pointInRect(x, y) && canBeSelected_) {
-				selected_ = true;
-				return true;
+			if (e.button.button == SDL_BUTTON_LEFT) {
+				SDL_GetMouseState(&x, &y);
+				if (pointInRect(x, y) && canBeSelected_) {
+					selected_ = true;
+					return true;
+				}
 			}
 			break;
 		case SDL_MOUSEMOTION:
