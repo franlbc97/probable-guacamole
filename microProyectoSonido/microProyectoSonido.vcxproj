@@ -132,14 +132,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Component.cpp" />
+    <ClCompile Include="..\src\ListenerComponent.cpp" />
     <ClCompile Include="..\src\main.cpp">
       <DeploymentContent>false</DeploymentContent>
     </ClCompile>
+    <ClCompile Include="..\src\RectRenderComponent.cpp" />
+    <ClCompile Include="..\src\SoundComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\AppObject.h" />
     <ClInclude Include="..\src\Component.h" />
     <ClInclude Include="..\src\errcheck.h" />
+    <ClInclude Include="..\src\ListenerComponent.h" />
+    <ClInclude Include="..\src\RectRenderComponent.h" />
+    <ClInclude Include="..\src\SoundComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

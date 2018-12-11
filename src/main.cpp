@@ -6,8 +6,9 @@
 #include <fmod_errors.h>
 #include <list>
 #include "AppObject.h"
-#include "Component.h"
-
+#include "RectRenderComponent.h"
+#include "ListenerComponent.h"
+#include "SoundComponent.h"
 
 
 
