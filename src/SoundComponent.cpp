@@ -1,12 +1,12 @@
 #include "SoundComponent.h"
-#include "errcheck.h"
+
 #include "AppObject.h"
 
 bool SoundComponent::init(AppObject * obj)
 {
 
-	ERRCHECK(systemSound_->createSound(file_, FMOD_3D | FMOD_LOOP_NORMAL, 0, &sound_));
-	ERRCHECK(systemSound_->playSound(sound_, 0, false, &channelSound_));
+	(systemSound_->createSound(file_, FMOD_3D | FMOD_LOOP_NORMAL, 0, &sound_));
+	(systemSound_->playSound(sound_, 0, false, &channelSound_));
 	changePosition3D(obj->getXMiddle(), 0, obj->getYMiddle());
 
 	return true;
@@ -57,7 +57,7 @@ void SoundComponent::changePosition3D(const int & x, const int & y, const int & 
 	pos.y = (y)* SCALE_FACTOR;
 	pos.z = (z)* SCALE_FACTOR;
 
-	ERRCHECK(channelSound_->set3DAttributes(&pos, &vel));
+	(channelSound_->set3DAttributes(&pos, &vel));
 }
 void SoundComponent::setVolume(const float & nVol)
 {
@@ -71,7 +71,7 @@ void SoundComponent::setVolume(const float & nVol)
 void SoundComponent::togglePause()
 {
 
-	ERRCHECK(channelSound_->setPaused(false));
+	(channelSound_->setPaused(false));
 }
 
 void SoundComponent::release(AppObject * obj)

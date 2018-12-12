@@ -37,7 +37,7 @@ public:
 	void initDependencies() {
 	
 		SDL_Init(SDL_INIT_EVERYTHING);
-		window_ = SDL_CreateWindow("Game Window", 200, 200, 500, 500,SDL_WINDOW_OPENGL);
+		window_ = SDL_CreateWindow("Game Window", 200, 200, 1280, 720,SDL_WINDOW_OPENGL);
 
 		renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
@@ -49,7 +49,7 @@ public:
 		FMOD::System_Create(&soundSystem_);
 		cheka(soundSystem_->init(128, FMOD_INIT_NORMAL, 0));
 		cheka(soundSystem_->set3DNumListeners(1));
-
+		soundSystem_->set3DSettings(1.0f, 100.f, 1.0f);
 		
 
 			
@@ -69,6 +69,27 @@ public:
 		ListenerComponent * lc = new ListenerComponent(soundSystem_);
 		appObj->addComponent(lc);
 
+		FMOD::Geometry *geo;
+		cheka(soundSystem_->createGeometry(150, 150, &geo));
+		FMOD_VECTOR verts[4];
+		verts[0].x = 0;
+		verts[0].y = 100;
+		verts[0].z = 500;
+
+		verts[1].x = 0;
+		verts[1].y = -100;
+		verts[1].z = 500;
+
+		verts[2].x = 1000;
+		verts[2].y = -100;
+		verts[2].z = 500;
+
+		verts[3].x = 1000;
+		verts[3].y= 100;
+		verts[3].z= 500;
+		int index;
+		cheka(geo->addPolygon(1.0f,0.0f, true, 4, verts, &index));
+		cheka(geo->setActive(true));
 
 
 	}

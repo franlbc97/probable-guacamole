@@ -138,6 +138,7 @@
     </ClCompile>
     <ClCompile Include="..\src\RectRenderComponent.cpp" />
     <ClCompile Include="..\src\SoundComponent.cpp" />
+    <ClCompile Include="..\src\WallComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\AppObject.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="..\src\ListenerComponent.h" />
     <ClInclude Include="..\src\RectRenderComponent.h" />
     <ClInclude Include="..\src\SoundComponent.h" />
+    <ClInclude Include="..\src\WallComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

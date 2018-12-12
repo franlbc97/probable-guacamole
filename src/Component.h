@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL.h>
 
-#define SCALE_FACTOR 0.01f
+#define SCALE_FACTOR 1.0f
 class AppObject;
 
 class Component
