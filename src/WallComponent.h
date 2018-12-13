@@ -4,7 +4,8 @@
 class WallComponent:public Component
 {
 public:
-	WallComponent(FMOD::Geometry * geometry);
+
+	WallComponent(FMOD::Geometry * geometry, const float & directOclusion,const float & reverbOcclusion);
 	~WallComponent();
 	virtual bool init(AppObject * obj);
 	virtual void render(SDL_Renderer * r, AppObject * obj);
@@ -16,8 +17,9 @@ public:
 private:
 	FMOD::Geometry* _geo;
 	int polygonIndex;
-	float directOclusion;
-	float reverbOcclusion;
+	float _directOclusion;
+	float _reverbOcclusion;
+	int indexes[4];
 
 };
 

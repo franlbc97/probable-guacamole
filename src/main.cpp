@@ -9,6 +9,7 @@
 #include "RectRenderComponent.h"
 #include "ListenerComponent.h"
 #include "SoundComponent.h"
+#include "WallComponent.h"
 
 
 
@@ -17,7 +18,7 @@ void cheka(FMOD_RESULT result) {
 	if (result != FMOD_OK) {
 		std::cout << FMOD_ErrorString(result) << std::endl;
 		// printf("FMOD error %d - %s", result, FMOD_ErrorString(result));
-		system("PAUSE");
+		//system("PAUSE");
 		exit(-1);
 	}
 }
@@ -46,11 +47,11 @@ public:
 		SDL_RenderPresent(renderer_);
 
 
-		FMOD::System_Create(&soundSystem_);
+		cheka(FMOD::System_Create(&soundSystem_));
 		cheka(soundSystem_->init(128, FMOD_INIT_NORMAL, 0));
 		cheka(soundSystem_->set3DNumListeners(1));
 		soundSystem_->set3DSettings(1.0f, 100.f, 1.0f);
-		
+		cheka(soundSystem_->createGeometry(150, 150, &geo_));
 
 			
 
@@ -68,28 +69,21 @@ public:
 		
 		ListenerComponent * lc = new ListenerComponent(soundSystem_);
 		appObj->addComponent(lc);
+		
+		AppObject *wall1 = new AppObject();
+		wall1->setX(0);
+		wall1->setY(360);
+		wall1->setH(30);
+		wall1->setW(1000);
+		WallComponent * Wall = new WallComponent(geo_, 1.0f, 0.0f);
+		wall1->addComponent(Wall);
+		wall1->addComponent(rectRender);
+		appObjects.push_back(wall1);
+		cheka(geo_->setActive(true));
 
-		FMOD::Geometry *geo;
-		cheka(soundSystem_->createGeometry(150, 150, &geo));
-		FMOD_VECTOR verts[4];
-		verts[0].x = 0;
-		verts[0].y = 100;
-		verts[0].z = 500;
 
-		verts[1].x = 0;
-		verts[1].y = -100;
-		verts[1].z = 500;
-
-		verts[2].x = 1000;
-		verts[2].y = -100;
-		verts[2].z = 500;
-
-		verts[3].x = 1000;
-		verts[3].y= 100;
-		verts[3].z= 500;
-		int index;
-		cheka(geo->addPolygon(1.0f,0.0f, true, 4, verts, &index));
-		cheka(geo->setActive(true));
+		
+		
 
 
 	}
@@ -164,6 +158,7 @@ private:
 	SDL_Renderer * renderer_;
 	bool running_;
 	FMOD::System * soundSystem_;
+	FMOD::Geometry * geo_;
 	Component * rectRender;
 	Component * dragRender;
 	Component * soundComponent;
