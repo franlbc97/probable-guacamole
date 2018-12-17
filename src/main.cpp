@@ -75,7 +75,8 @@ public:
 		wall1->setY(360);
 		wall1->setH(30);
 		wall1->setW(1000);
-		WallComponent * Wall = new WallComponent(geo_, 1.0f, 0.0f);
+		WallComponent * Wall = new WallComponent(geo_, 0.90f, 0.0f);
+
 		wall1->addComponent(Wall);
 		wall1->addComponent(rectRender);
 		appObjects.push_back(wall1);
