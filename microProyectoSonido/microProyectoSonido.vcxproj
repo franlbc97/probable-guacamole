@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\CollisionWorld.cpp" />
     <ClCompile Include="..\src\Component.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
     <ClCompile Include="..\src\main.cpp">
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\AppObject.h" />
+    <ClInclude Include="..\src\CollisionWorld.h" />
     <ClInclude Include="..\src\Component.h" />
     <ClInclude Include="..\src\errcheck.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />

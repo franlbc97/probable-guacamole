@@ -170,6 +170,7 @@ private:
 
 
 int main(int ac, char** av) {
+	printf("Game Started\n");
 	
 	SDLApp app;
 	app.initDependencies();

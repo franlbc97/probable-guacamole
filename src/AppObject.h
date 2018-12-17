@@ -1,10 +1,16 @@
 #pragma once
 #include "Component.h"
 #include <list>
+#include "CollisionWorld.h"
+static int objectNum = 0;
+
 class AppObject
 {
 public:
+	
 	AppObject() {
+		objectNum++;
+		_id = objectNum;
 		rect_.x = 0;
 		rect_.y = 0;
 		rect_.w = 30;
@@ -17,16 +23,46 @@ public:
 
 		selected_ = false;
 		canBeSelected_ = true;
+		collider_ = true;
 		componentList = std::list<Component*>();
-
+		CollisionWorld::addRect(&rect_, _id);
 	};
-	~AppObject() {};
+	~AppObject() {
+		CollisionWorld::eraseRect( _id);
+	};
+
+	void setCollidable(const bool & b) {
+		collider_ = b;
+		if (collider_) {
+			CollisionWorld::addRect(&rect_, _id);
+		}
+		else {
+			CollisionWorld::eraseRect(_id);
+		}
+	}
+
 	void addComponent(Component * c) {
 
 		componentList.push_back(c);
 		c->init(this);
 	}
+	virtual bool move(const int & x, const int & y) {
+		rect_.x += x;
+		rect_.y += y;
+		if (collider_) {
+			if (CollisionWorld::collides(&rect_)) {
+				rect_.x -= x;
+				rect_.y -= y;
+				return false;
+			}
+		}
+
+
+
+		return true;
+	}
 	virtual void render(SDL_Renderer * r) {
+		
 		for (auto c : componentList)
 			c->render(r, this);
 	};
@@ -50,8 +86,7 @@ public:
 			break;
 		case SDL_MOUSEMOTION:
 			if (selected_) {
-				rect_.x += e.motion.xrel;
-				rect_.y += e.motion.yrel;
+				move(e.motion.xrel, e.motion.yrel);
 				return true;
 			}
 			break;
@@ -92,9 +127,12 @@ public:
 	SDL_Rect &getRect() { return rect_; };
 
 protected:
+	
+	int _id;
 	std::list<Component*> componentList;
 	bool canBeSelected_;
 	bool selected_;
+	bool collider_;
 	
 	SDL_Rect rect_;
 	SDL_Color color_;
