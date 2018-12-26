@@ -12,6 +12,7 @@ public:
 	virtual void tick(AppObject * obj) = 0;
 	virtual bool handleInput(SDL_Event & e, AppObject * obj) = 0;
 	virtual void release(AppObject * obj) = 0;
+	virtual const char * getType() = 0;
 	
 };
 class DragMouseComponent: public Component

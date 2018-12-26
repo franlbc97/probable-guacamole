@@ -8,12 +8,19 @@ bool GraphicManager::init()
 	
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window_ = SDL_CreateWindow("Game Window", 0, 0, 1280, 720, SDL_WINDOW_OPENGL);
+	
 
 	renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 	SDL_SetRenderDrawColor(renderer_, 0, 100, 100, 255);  // Dark grey.
+	cameraRect_ = { 0,0,1280,720 };
 	SDL_RenderClear(renderer_);
 	SDL_RenderPresent(renderer_);
+	return false;
+}
+
+bool GraphicManager::tick()
+{
 	return false;
 }
 
@@ -25,6 +32,18 @@ SDL_Renderer * GraphicManager::getRenderer()
 SDL_Window * GraphicManager::getWindow()
 {
 	return window_;
+}
+
+void GraphicManager::moveCamera(const int & x, const int & y)
+{
+	cameraRect_.x += x;
+	cameraRect_.y += y;
+}
+
+void GraphicManager::setCameraPos(const int & x, const int & y)
+{
+	cameraRect_.x = x;
+	cameraRect_.y = y;
 }
 
 SDL_Rect GraphicManager::getRectRelativeToCamera(const SDL_Rect & r)

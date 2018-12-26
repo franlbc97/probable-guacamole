@@ -11,6 +11,7 @@ public:
 	virtual void tick(AppObject * obj) {};
 	virtual bool handleInput(SDL_Event & e, AppObject * obj);
 	virtual void release(AppObject * obj) {};
+	virtual const char * getType();
 
 private:
 	SDL_Color _color;

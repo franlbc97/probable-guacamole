@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{EE2E1FFB-28E8-4A8C-A8CA-636959FAC571}</ProjectGuid>
     <RootNamespace>microProyectoSonido</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -138,6 +138,9 @@
     <ClCompile Include="..\src\main.cpp">
       <DeploymentContent>false</DeploymentContent>
     </ClCompile>
+    <ClCompile Include="..\src\MapData.cpp" />
+    <ClCompile Include="..\src\MoveComponent.cpp" />
+    <ClCompile Include="..\src\PlayerControllerComponent.cpp" />
     <ClCompile Include="..\src\RectRenderComponent.cpp" />
     <ClCompile Include="..\src\SoundComponent.cpp" />
     <ClCompile Include="..\src\WallComponent.cpp" />
@@ -149,6 +152,9 @@
     <ClInclude Include="..\src\errcheck.h" />
     <ClInclude Include="..\src\GraphicManager.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
+    <ClInclude Include="..\src\MapData.h" />
+    <ClInclude Include="..\src\MoveComponent.h" />
+    <ClInclude Include="..\src\PlayerControllerComponent.h" />
     <ClInclude Include="..\src\RectRenderComponent.h" />
     <ClInclude Include="..\src\SoundComponent.h" />
     <ClInclude Include="..\src\WallComponent.h" />

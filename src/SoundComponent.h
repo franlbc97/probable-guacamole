@@ -16,6 +16,7 @@ public:
 	virtual bool init(AppObject * obj);
 	virtual void render(SDL_Renderer * r, AppObject * obj);
 	virtual void tick(AppObject * obj);
+	virtual const char * getType();
 
 	virtual bool handleInput(SDL_Event & e, AppObject * obj);
 

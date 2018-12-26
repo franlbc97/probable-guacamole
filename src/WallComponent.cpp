@@ -121,3 +121,8 @@ bool WallComponent::handleInput(SDL_Event & e, AppObject * obj)
 void WallComponent::release(AppObject * obj)
 {
 }
+
+const char * WallComponent::getType()
+{
+	return "WallComponent";
+}

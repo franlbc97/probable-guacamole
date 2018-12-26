@@ -23,6 +23,11 @@ void SoundComponent::tick(AppObject * obj)
 	changePosition3D(obj->getXMiddle(), 0, obj->getYMiddle());
 }
 
+const char * SoundComponent::getType()
+{
+	return "SoundComponent";
+}
+
 bool SoundComponent::handleInput(SDL_Event & e, AppObject * obj)
 {
 	switch (e.type)
