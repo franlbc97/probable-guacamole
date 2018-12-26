@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\CollisionWorld.cpp" />
     <ClCompile Include="..\src\Component.cpp" />
+    <ClCompile Include="..\src\GraphicManager.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
     <ClCompile Include="..\src\main.cpp">
       <DeploymentContent>false</DeploymentContent>
@@ -146,6 +147,7 @@
     <ClInclude Include="..\src\CollisionWorld.h" />
     <ClInclude Include="..\src\Component.h" />
     <ClInclude Include="..\src\errcheck.h" />
+    <ClInclude Include="..\src\GraphicManager.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
     <ClInclude Include="..\src\RectRenderComponent.h" />
     <ClInclude Include="..\src\SoundComponent.h" />

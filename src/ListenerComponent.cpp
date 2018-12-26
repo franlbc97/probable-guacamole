@@ -7,8 +7,8 @@ bool ListenerComponent::init(AppObject * obj)
 	tick(obj);
 	FMOD_VECTOR fow, up;
 	systemSound_->get3DListenerAttributes(0, NULL, NULL, &fow, &up);
-	printf("%d %d %d \n", fow.x, fow.y, fow.z);
-	printf("%d %d %d \n", up.x, up.y, up.z);
+	//printf("%d %d %d \n", fow.x, fow.y, fow.z);
+	//printf("%d %d %d \n", up.x, up.y, up.z);
 	fow.z = 1;
 
 

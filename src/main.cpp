@@ -19,7 +19,7 @@ void cheka(FMOD_RESULT result) {
 		std::cout << FMOD_ErrorString(result) << std::endl;
 		// printf("FMOD error %d - %s", result, FMOD_ErrorString(result));
 		//system("PAUSE");
-		exit(-1);
+		//exit(-1);
 	}
 }
 
