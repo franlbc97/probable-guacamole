@@ -7,6 +7,7 @@ public:
 	
 	static bool init();
 	static bool tick();
+	static bool release();
 
 	static SDL_Renderer* getRenderer();
 	static SDL_Window * getWindow();
@@ -15,6 +16,9 @@ public:
 	static void setCameraPos(const int & x, const int & y);
 	static SDL_Rect getRectRelativeToCamera(const SDL_Rect & r);
 	static bool isInCamera(const SDL_Rect & r);
+
+	static void present();
+	static void clear();
 private:
 
 };

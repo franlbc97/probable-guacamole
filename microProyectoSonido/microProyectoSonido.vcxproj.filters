@@ -16,6 +16,12 @@
     <Filter Include="Source Files\Components">
       <UniqueIdentifier>{803243bf-c4af-4f0c-8758-9948198cbda8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Maps">
+      <UniqueIdentifier>{25143428-409f-4b33-9a94-8ce3cef87cf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{90721e44-215f-406c-b82c-d662a52dd682}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -30,26 +36,29 @@
     <ClCompile Include="..\src\Component.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\ListenerComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\WallComponent.cpp">
       <Filter>Source Files\Components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\CollisionWorld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\GraphicManager.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\PlayerControllerComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\MoveComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\MapData.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\CollisionWorld.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\GraphicManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SoundManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\ListenerComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\MoveComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,12 +83,6 @@
     <ClInclude Include="..\src\WallComponent.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\CollisionWorld.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\GraphicManager.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\PlayerControllerComponent.h">
       <Filter>Source Files\Components</Filter>
     </ClInclude>
@@ -87,7 +90,16 @@
       <Filter>Source Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\src\MapData.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CollisionWorld.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GraphicManager.h">
+      <Filter>Source Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SoundManager.h">
+      <Filter>Source Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,6 +24,12 @@ bool GraphicManager::tick()
 	return false;
 }
 
+bool GraphicManager::release()
+{
+	SDL_Quit();
+	return false;
+}
+
 SDL_Renderer * GraphicManager::getRenderer()
 {
 	return renderer_;
@@ -59,4 +65,15 @@ bool GraphicManager::isInCamera(const SDL_Rect & r)
 		return true;
 	}
 	return false;
+}
+
+void GraphicManager::present()
+{
+	SDL_RenderPresent(renderer_);
+}
+
+void GraphicManager::clear()
+{
+	SDL_SetRenderDrawColor(renderer_, 0, 100, 100, 255);  // Dark grey.
+	SDL_RenderClear(renderer_);
 }

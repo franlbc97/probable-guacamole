@@ -1,11 +1,10 @@
 #include "WallComponent.h"
 #include "AppObject.h"
-
+#include "SoundManager.h"
 #include <iostream>
 #define WALL_HEIGHT 10
 
-WallComponent::WallComponent(FMOD::Geometry * geometrys, const float & directOclusion, const float & reverbOcclusion) :
-	_geo(geometrys),
+WallComponent::WallComponent( const float & directOclusion, const float & reverbOcclusion) :
 	_directOclusion(directOclusion),
 	_reverbOcclusion(reverbOcclusion)
 
@@ -20,6 +19,7 @@ WallComponent::~WallComponent()
 
 bool WallComponent::init(AppObject * obj)
 {
+	FMOD::Geometry* _geo = SoundManager::getGeometry();
 	obj->setCanBeSeleceted(false);
 	int x = obj->getX();
 	int y = obj->getX();
@@ -104,7 +104,7 @@ bool WallComponent::init(AppObject * obj)
 	return false;
 }
 
-void WallComponent::render(SDL_Renderer * r, AppObject * obj)
+void WallComponent::render(AppObject * obj)
 {
 	
 }

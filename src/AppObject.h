@@ -46,6 +46,16 @@ public:
 		componentList.push_back(c);
 		c->init(this);
 	}
+
+	Component * getComponent(const char * type) {
+		for (auto c : componentList) {
+			if (c->getType() == type) {
+				return c;
+			}
+		}
+		return nullptr;
+
+	}
 	virtual bool move(const int & x, const int & y) {
 		rect_.x += x;
 		rect_.y += y;
@@ -61,10 +71,10 @@ public:
 
 		return true;
 	}
-	virtual void render(SDL_Renderer * r) {
+	virtual void render() {
 		
 		for (auto c : componentList)
-			c->render(r, this);
+			c->render(this);
 	};
 	virtual void tick() {
 		for (auto c : componentList) {

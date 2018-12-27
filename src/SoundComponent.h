@@ -5,16 +5,15 @@
 class SoundComponent : public Component
 {
 public:
-	SoundComponent(FMOD::System *sys, const char * file) {
+	SoundComponent(const char * file) {
 		file_ = file;
-		systemSound_ = sys;
 	}
 
 	virtual ~SoundComponent() { sound_->release(); }
 
 	// Heredado vía Component
 	virtual bool init(AppObject * obj);
-	virtual void render(SDL_Renderer * r, AppObject * obj);
+	virtual void render(AppObject * obj);
 	virtual void tick(AppObject * obj);
 	virtual const char * getType();
 

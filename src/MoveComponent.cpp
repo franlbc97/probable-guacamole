@@ -13,7 +13,7 @@ bool MoveComponent::init(AppObject * obj)
 	return false;
 }
 
-void MoveComponent::render(SDL_Renderer * r, AppObject * obj)
+void MoveComponent::render( AppObject * obj)
 {
 }
 

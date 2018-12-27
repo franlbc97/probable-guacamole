@@ -10,18 +10,12 @@
 #include "ListenerComponent.h"
 #include "SoundComponent.h"
 #include "WallComponent.h"
+#include "GraphicManager.h"
+#include "SoundManager.h"
 
 
 
 
-void cheka(FMOD_RESULT result) {
-	if (result != FMOD_OK) {
-		std::cout << FMOD_ErrorString(result) << std::endl;
-		// printf("FMOD error %d - %s", result, FMOD_ErrorString(result));
-		//system("PAUSE");
-		//exit(-1);
-	}
-}
 
 
 
@@ -33,41 +27,36 @@ class SDLApp
 {
 
 public:
-	SDLApp():running_(1),window_(0),soundSystem_(0)	{}
+	SDLApp():running_(1)	{}
 	~SDLApp() {}
-	void initDependencies() {
+	bool initDependencies() {
 	
-		SDL_Init(SDL_INIT_EVERYTHING);
-		window_ = SDL_CreateWindow("Game Window", 200, 200, 1280, 720,SDL_WINDOW_OPENGL);
-
-		renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-
-		SDL_SetRenderDrawColor(renderer_, 0, 100, 100, 255);  // Dark grey.
-		SDL_RenderClear(renderer_);
-		SDL_RenderPresent(renderer_);
-
-
-		cheka(FMOD::System_Create(&soundSystem_));
-		cheka(soundSystem_->init(128, FMOD_INIT_NORMAL, 0));
-		cheka(soundSystem_->set3DNumListeners(1));
-		soundSystem_->set3DSettings(1.0f, 100.f, 1.0f);
-		cheka(soundSystem_->createGeometry(150, 150, &geo_));
-
+		if (GraphicManager::init()) 
+		{
+			printf("Initialiazion of GraphicManager Failed\n");
+			return true;
+		}
+		if (SoundManager::init()) {
+			printf("Initialiazion of SoundManager Failed\n");
+			return true;
+		}
 			
 
-
+		return false;
 	}
 
 	void initScene() {
+		SoundManager::createZoneReverb(FMOD_PRESET_CAVE, 0, 0, 1000.f);
+
 		rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
 		AppObject * appObj = new AppObject();
 		appObjects.push_back(appObj);
 		
-		appObj->setX(250 - 15);
-		appObj->setY(250 - 15);
+		appObj->setX(500 - 15);
+		appObj->setY(500 - 15);
 		appObj->addComponent(rectRender);
 		
-		ListenerComponent * lc = new ListenerComponent(soundSystem_);
+		ListenerComponent * lc = new ListenerComponent();
 		appObj->addComponent(lc);
 		
 		AppObject *wall1 = new AppObject();
@@ -75,13 +64,12 @@ public:
 		wall1->setY(360);
 		wall1->setH(30);
 		wall1->setW(1000);
-		WallComponent * Wall = new WallComponent(geo_, 0.90f, 0.0f);
+		WallComponent * Wall = new WallComponent( 1.f, 1.0f);
+		
 
 		wall1->addComponent(Wall);
 		wall1->addComponent(rectRender);
 		appObjects.push_back(wall1);
-		cheka(geo_->setActive(true));
-
 
 		
 		
@@ -97,8 +85,9 @@ public:
 			*it = nullptr;
 
 		}
-		SDL_Quit();
-		soundSystem_->release();
+	
+		GraphicManager::release();
+		SoundManager::release();
 	}
 	bool isRunning() { return running_; }
 
@@ -117,7 +106,7 @@ public:
 				appobj->setX(x);
 				appobj->setY(y);
 				appobj->addComponent(rectRender);
-				SoundComponent * comp = new SoundComponent(soundSystem_, e.drop.file);
+				SoundComponent * comp = new SoundComponent( e.drop.file);
 				appObjects.push_back(appobj);
 				appobj->addComponent(comp);
 				continue;
@@ -135,31 +124,25 @@ public:
 	}
 
 	void tick(){
-		soundSystem_->update();
+		SoundManager::tick();
 		for (auto it : appObjects)
 			it->tick();
 	}
 	void render() {
 
-		SDL_SetRenderDrawColor(renderer_, 0, 100, 100, 255);  // Dark grey.
-
-		SDL_RenderClear(renderer_);
-
+		GraphicManager::tick();
+		GraphicManager::clear();
 		for (auto it : appObjects)
-			it->render(renderer_);
+			it->render();
+		GraphicManager::present();
 
-		SDL_RenderPresent(renderer_);
 
 	}
 
 	
 private:
 	std::list<AppObject*> appObjects;
-	SDL_Window * window_;
-	SDL_Renderer * renderer_;
 	bool running_;
-	FMOD::System * soundSystem_;
-	FMOD::Geometry * geo_;
 	Component * rectRender;
 	Component * dragRender;
 	Component * soundComponent;

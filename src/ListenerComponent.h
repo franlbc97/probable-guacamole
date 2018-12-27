@@ -5,15 +5,15 @@
 class ListenerComponent : public Component
 {
 public:
-	ListenerComponent(FMOD::System *sys) : systemSound_(sys) {};
+	ListenerComponent() {};
 	~ListenerComponent() {};
 
 	virtual bool init(AppObject * obj);
-	virtual void render(SDL_Renderer * r, AppObject * obj) {}
+	virtual void render(AppObject * obj) {};
 	virtual void tick(AppObject * obj);
 	virtual bool handleInput(SDL_Event & e, AppObject * obj) { return false; }
 	virtual void release(AppObject * obj);
-
+	virtual const char * getType() { return "ListenerComponent"; }
 
 	void changePosition3D(const int & x, const int & y, const int & z);
 

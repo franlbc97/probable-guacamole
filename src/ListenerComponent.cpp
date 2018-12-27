@@ -1,8 +1,10 @@
 #include "ListenerComponent.h"
 #include <iostream>
 #include "AppObject.h"
+#include "SoundManager.h"
 bool ListenerComponent::init(AppObject * obj)
 {
+	systemSound_ = SoundManager::getSystem();
 	systemSound_->set3DNumListeners(1);
 	tick(obj);
 	FMOD_VECTOR fow, up;

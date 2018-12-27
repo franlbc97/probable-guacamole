@@ -1,19 +1,20 @@
 #include "SoundComponent.h"
-
+#include "SoundManager.h"
 #include "AppObject.h"
 
 bool SoundComponent::init(AppObject * obj)
 {
 
+	systemSound_ = SoundManager::getSystem();
+
 	(systemSound_->createSound(file_, FMOD_3D | FMOD_LOOP_NORMAL, 0, &sound_));
 	(systemSound_->playSound(sound_, 0, false, &channelSound_));
 	changePosition3D(obj->getXMiddle(), 0, obj->getYMiddle());
-
 	return true;
 
 }
 
-void SoundComponent::render(SDL_Renderer * r, AppObject * obj)
+void SoundComponent::render( AppObject * obj)
 {
 
 }

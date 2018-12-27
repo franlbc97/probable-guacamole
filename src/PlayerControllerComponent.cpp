@@ -13,7 +13,7 @@ bool PlayerControllerComponent::init(AppObject * obj)
 	return false;
 }
 
-void PlayerControllerComponent::render(SDL_Renderer * r, AppObject * obj)
+void PlayerControllerComponent::render( AppObject * obj)
 {
 }
 
