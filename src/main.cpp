@@ -12,8 +12,8 @@
 #include "WallComponent.h"
 #include "GraphicManager.h"
 #include "SoundManager.h"
-
-
+#include "MapData.h"
+#include "PlayerControllerComponent.h"
 
 
 
@@ -46,6 +46,8 @@ public:
 	}
 
 	void initScene() {
+		//TMXReader::MapData mapilla("../Media/Maps/mapaNormal.tmx");
+
 		SoundManager::createZoneReverb(FMOD_PRESET_CAVE, 0, 0, 1000.f);
 
 		rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
@@ -55,7 +57,7 @@ public:
 		appObj->setX(500 - 15);
 		appObj->setY(500 - 15);
 		appObj->addComponent(rectRender);
-		
+		appObj->addComponent(new PlayerControllerComponent());
 		ListenerComponent * lc = new ListenerComponent();
 		appObj->addComponent(lc);
 		

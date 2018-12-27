@@ -62,7 +62,7 @@ void SoundManager::createZoneReverb(FMOD_REVERB_PROPERTIES prop, const int & x, 
 	vec.x = x;
 	vec.y = 0;
 	vec.z = y;
-	CheckFMODErrors(reverb->set3DAttributes(&vec, 10.f, maxDistance));
+	CheckFMODErrors(reverb->set3DAttributes(&vec, maxDistance/2.f, maxDistance));
 }
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include <map>
 class PlayerControllerComponent
 	:public Component
 {
@@ -14,7 +15,9 @@ public:
 	virtual const char * getType();
 
 private:
+	void updateKeys(SDL_Event & e, bool Pressed);
 	int _movementAmount;
+	std::map<SDL_Keycode, bool> keys;
 
 
 };
