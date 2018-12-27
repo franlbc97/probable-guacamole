@@ -18,6 +18,6 @@ private:
 	void updateKeys(SDL_Event & e, bool Pressed);
 	int _movementAmount;
 	std::map<SDL_Keycode, bool> keys;
-
+	SDL_Point facing;
 
 };

@@ -1,5 +1,6 @@
 #include "PlayerControllerComponent.h"
 #include "AppObject.h"
+#include "GraphicManager.h"
 PlayerControllerComponent::PlayerControllerComponent()
 {
 }
@@ -20,6 +21,8 @@ bool PlayerControllerComponent::init(AppObject * obj)
 
 void PlayerControllerComponent::render( AppObject * obj)
 {
+
+	
 }
 
 void PlayerControllerComponent::tick(AppObject * obj)
@@ -42,6 +45,7 @@ void PlayerControllerComponent::tick(AppObject * obj)
 		obj->move(5, 0);
 
 	}
+
 }
 
 bool PlayerControllerComponent::handleInput(SDL_Event & e, AppObject * obj)
