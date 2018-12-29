@@ -77,3 +77,20 @@ void GraphicManager::clear()
 	SDL_SetRenderDrawColor(renderer_, 0, 100, 100, 255);  // Dark grey.
 	SDL_RenderClear(renderer_);
 }
+
+void GraphicManager::setColor(const int & r, const int & g, const int & b, const int & a)
+{
+	SDL_SetRenderDrawColor(renderer_, r, g, b, a);
+}
+
+void GraphicManager::drawRect(const SDL_Rect & rect,const SDL_Color & color)
+{
+	setColor(color.r, color.g, color.b, color.a);
+	SDL_RenderFillRect(renderer_, &rect);
+}
+
+void GraphicManager::drawLine(const int & x1, const int & y1, const int & x2, const int & y2, const SDL_Color & color)
+{
+	SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
+	SDL_RenderDrawLine(renderer_, x1, y1, x2, y2);
+}

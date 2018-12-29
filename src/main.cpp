@@ -46,11 +46,10 @@ public:
 	}
 
 	void initScene() {
-		//TMXReader::MapData mapilla("../Media/Maps/mapaNormal.tmx");
-
-		SoundManager::createZoneReverb(FMOD_PRESET_CAVE, 0, 0, 1000.f);
-
 		rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
+		buildMap("a");
+
+
 		AppObject * appObj = new AppObject();
 		appObjects.push_back(appObj);
 		
@@ -61,6 +60,7 @@ public:
 		ListenerComponent * lc = new ListenerComponent();
 		appObj->addComponent(lc);
 		
+		/*
 		AppObject *wall1 = new AppObject();
 		wall1->setX(0);
 		wall1->setY(360);
@@ -72,8 +72,9 @@ public:
 		wall1->addComponent(Wall);
 		wall1->addComponent(rectRender);
 		appObjects.push_back(wall1);
+		*/
+		SoundManager::createZoneReverb(FMOD_PRESET_CAVE, 0, 0, 1000.f);
 
-		
 		
 
 
@@ -148,7 +149,42 @@ private:
 	Component * rectRender;
 	Component * dragRender;
 	Component * soundComponent;
-	//Component * rectRender;
+	
+	void buildMap(std::string file) {
+		TMXReader::MapData mapilla("../Media/Maps/mapaNormal.tmx");
+		for (size_t i = 0; i < mapilla.totalObjGroups(); i++)
+		{
+			TMXReader::Objectgroup* objGroup = mapilla.getObjectGroup(i);
+			if (objGroup->getName() == "Walls") {
+				for (size_t j = 0; j < objGroup->groupSize(); j++)
+				{
+					AppObject * wall = new AppObject();
+					appObjects.push_back(wall);
+					wall->setX(objGroup->at(j)->getX());
+					wall->setY(objGroup->at(j)->getY());
+					wall->setW(objGroup->at(j)->getW());
+					wall->setH(objGroup->at(j)->getH());
+
+					wall->addComponent(rectRender);
+					wall->addComponent(new WallComponent(1.f, 1.f));
+
+				}
+			}
+			else if (objGroup->getName() == "Zones") {
+				for (size_t j = 0; j < objGroup->groupSize(); j++)
+				{
+					int x, y;
+					float mdistance = (objGroup->at(j)->getH()>objGroup->at(j)->getW())? objGroup->at(j)->getH(): objGroup->at(j)->getW();
+					x = objGroup->at(j)->getX();
+					y = objGroup->at(j)->getY();
+					SoundManager::createZoneReverb(SoundManager::getPresetReverbProperties(objGroup->at(j)->getType()),x,y,mdistance);
+
+
+				}
+			}
+		}
+
+	}
 
 };
 

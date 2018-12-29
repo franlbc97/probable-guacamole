@@ -1,5 +1,6 @@
 #include "SoundManager.h"
 #include <iostream>
+#include <string>
 static FMOD::System *_system;
 static FMOD::Geometry * _geo;
 bool SoundManager::init()
@@ -63,6 +64,60 @@ void SoundManager::createZoneReverb(FMOD_REVERB_PROPERTIES prop, const int & x, 
 	vec.y = 0;
 	vec.z = y;
 	CheckFMODErrors(reverb->set3DAttributes(&vec, maxDistance/2.f, maxDistance));
+}
+
+FMOD_REVERB_PROPERTIES SoundManager::getPresetReverbProperties(std::string name)
+{
+	if (name == "Off")
+		return FMOD_PRESET_OFF;
+	if (name == "Generic")
+		return FMOD_PRESET_GENERIC;
+	if (name == "Padded cell")
+		return FMOD_PRESET_PADDEDCELL;
+	if (name == "Room")
+		return FMOD_PRESET_ROOM;
+	if (name == "Bathroom")
+		return FMOD_PRESET_BATHROOM;
+	if (name == "Living Room")
+		return FMOD_PRESET_LIVINGROOM;
+	if (name == "Stone room")
+		return FMOD_PRESET_STONEROOM;
+	if (name == "Auditorium")
+		return FMOD_PRESET_AUDITORIUM;
+	if (name == "Concert hall")
+		return FMOD_PRESET_CONCERTHALL;
+	if (name == "Cave")
+		return FMOD_PRESET_CAVE;
+	if (name == "Arena")
+		return FMOD_PRESET_ARENA;
+	if (name == "Hangar")
+		return FMOD_PRESET_HANGAR;
+	if (name == "Carpeted hallway")
+		return FMOD_PRESET_CARPETTEDHALLWAY;
+	if (name == "Hallway")
+		return FMOD_PRESET_HALLWAY;
+	if (name == "Stone corridor")
+		return FMOD_PRESET_STONECORRIDOR;
+	if (name == "Alley")
+		return FMOD_PRESET_ALLEY;
+	if (name == "Forest")
+		return FMOD_PRESET_FOREST;
+	if (name == "City")
+		return FMOD_PRESET_CITY;
+	if (name == "Mountains")
+		return FMOD_PRESET_MOUNTAINS;
+	if (name == "Quarry")
+		return FMOD_PRESET_QUARRY;
+	if (name == "Plain")
+		return FMOD_PRESET_PLAIN;
+	if (name == "Parking lot")
+		return FMOD_PRESET_PARKINGLOT;
+	if (name == "Sewer pipe")
+		return FMOD_PRESET_SEWERPIPE;
+	if (name == "Underwater")
+		return FMOD_PRESET_UNDERWATER;
+	std::cout << "the preset " << name << " is not defined in FMOD, so fuck you" << std::endl;
+	return FMOD_PRESET_GENERIC;
 }
 
 

@@ -101,5 +101,8 @@
     <ClInclude Include="..\src\SoundManager.h">
       <Filter>Source Files\Managers</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Utilities.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

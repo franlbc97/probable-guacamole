@@ -5,14 +5,13 @@
 RectRenderComponent::RectRenderComponent(SDL_Color color) :_color(color)
 {
 	
+	
 }
 
 void RectRenderComponent::render( AppObject * obj)
 {
 	if (GraphicManager::isInCamera(obj->getRect())) {
-		SDL_SetRenderDrawColor(GraphicManager::getRenderer(), _color.r, _color.g, _color.b, _color.a);
-		SDL_RenderFillRect(GraphicManager::getRenderer(), &obj->getRect());
-
+		GraphicManager::drawRect(obj->getRect(), _color);
 	}
 }
 

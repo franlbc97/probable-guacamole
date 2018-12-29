@@ -16,6 +16,7 @@ public:
 	virtual const char * getType() { return "ListenerComponent"; }
 
 	void changePosition3D(const int & x, const int & y, const int & z);
+	void changeOrientation(const float & x, const float & y, const float & z);
 
 
 private:

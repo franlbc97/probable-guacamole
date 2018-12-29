@@ -159,6 +159,7 @@
     <ClInclude Include="..\src\RectRenderComponent.h" />
     <ClInclude Include="..\src\SoundComponent.h" />
     <ClInclude Include="..\src\SoundManager.h" />
+    <ClInclude Include="..\src\Utilities.h" />
     <ClInclude Include="..\src\WallComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

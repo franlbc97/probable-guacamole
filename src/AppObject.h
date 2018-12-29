@@ -2,6 +2,7 @@
 #include "Component.h"
 #include <list>
 #include "CollisionWorld.h"
+#include "Utilities.h"
 static int objectNum = 0;
 
 class AppObject
@@ -15,6 +16,9 @@ public:
 		rect_.y = 0;
 		rect_.w = 30;
 		rect_.h = 30;
+		facing.x = 0;
+		facing.y = 1;
+
 
 		color_.a = 255;
 		color_.r = 255;
@@ -132,12 +136,20 @@ public:
 	void setW(const int & w) { rect_.w = w; }
 	void setH(const int & h) { rect_.h = h; }
 
+	void setFacing(const float & x, const float & y) {
+		facing.x = x; facing.y = y;
+	}
+	Vector2D getFacing(){
+		return facing;
+	}
+
+
 	void setCanBeSeleceted(const bool & b) { canBeSelected_ = b; }
 	bool getCanBeSeleceted() { return canBeSelected_; }
 	SDL_Rect &getRect() { return rect_; };
 
 protected:
-	
+	Vector2D facing;
 	int _id;
 	std::list<Component*> componentList;
 	bool canBeSelected_;
