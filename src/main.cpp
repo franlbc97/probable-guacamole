@@ -14,6 +14,7 @@
 #include "SoundManager.h"
 #include "MapData.h"
 #include "PlayerControllerComponent.h"
+#include "Reverb3DComponent.h"
 
 
 
@@ -73,7 +74,6 @@ public:
 		wall1->addComponent(rectRender);
 		appObjects.push_back(wall1);
 		*/
-		SoundManager::createZoneReverb(FMOD_PRESET_CAVE, 0, 0, 1000.f);
 
 		
 
@@ -109,6 +109,7 @@ public:
 				appobj->setX(x);
 				appobj->setY(y);
 				appobj->addComponent(rectRender);
+				appobj->setCollidable(false);
 				SoundComponent * comp = new SoundComponent( e.drop.file);
 				appObjects.push_back(appobj);
 				appobj->addComponent(comp);
@@ -173,13 +174,20 @@ private:
 			else if (objGroup->getName() == "Zones") {
 				for (size_t j = 0; j < objGroup->groupSize(); j++)
 				{
+					/*
 					int x, y;
-					float mdistance = (objGroup->at(j)->getH()>objGroup->at(j)->getW())? objGroup->at(j)->getH(): objGroup->at(j)->getW();
 					x = objGroup->at(j)->getX();
 					y = objGroup->at(j)->getY();
-					SoundManager::createZoneReverb(SoundManager::getPresetReverbProperties(objGroup->at(j)->getType()),x,y,mdistance);
-
-
+					AppObject * reverbObj = new AppObject();
+					reverbObj->setCanBeSeleceted(false);
+					reverbObj->setCollidable(false);
+					reverbObj->setX(x);
+					reverbObj->setY(y);
+					reverbObj->setW(objGroup->at(j)->getW());
+					reverbObj->setH(objGroup->at(j)->getH());
+					reverbObj->addComponent(new Reverb3DComponent(SoundManager::getPresetReverbProperties(objGroup->at(j)->getType())));
+					appObjects.push_back(reverbObj);
+					*/
 				}
 			}
 		}

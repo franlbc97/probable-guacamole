@@ -1,6 +1,7 @@
 #include "WallComponent.h"
 #include "AppObject.h"
 #include "SoundManager.h"
+#include "GraphicManager.h"
 #include <iostream>
 #define WALL_HEIGHT 10
 
@@ -19,6 +20,7 @@ WallComponent::~WallComponent()
 
 bool WallComponent::init(AppObject * obj)
 {
+
 	FMOD::Geometry* _geo = SoundManager::getGeometry();
 	obj->setCanBeSeleceted(false);
 	int x = obj->getX();
@@ -43,7 +45,7 @@ bool WallComponent::init(AppObject * obj)
 	verts[3].x = xL;
 	verts[3].y = WALL_HEIGHT;
 	verts[3].z = y;
-	 _geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex);
+	SoundManager::CheckFMODErrors(_geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex));
 	
 	indexes[0] = polygonIndex;
 
@@ -62,7 +64,7 @@ bool WallComponent::init(AppObject * obj)
 	verts[3].x =xL;
 	verts[3].y = WALL_HEIGHT;
 	verts[3].z = yL;
-	_geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex);
+	SoundManager::CheckFMODErrors(_geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex));
 	indexes[1] = polygonIndex;
 
 	verts[0].x = x;
@@ -80,7 +82,7 @@ bool WallComponent::init(AppObject * obj)
 	verts[3].x = x;
 	verts[3].y = WALL_HEIGHT;
 	verts[3].z = yL;
-	_geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex);
+	SoundManager::CheckFMODErrors(_geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex));
 	indexes[2] = polygonIndex;
 
 	verts[0].x = xL;
@@ -98,14 +100,15 @@ bool WallComponent::init(AppObject * obj)
 	verts[3].x = xL;
 	verts[3].y = WALL_HEIGHT;
 	verts[3].z = yL;
-	_geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex);
+	SoundManager::CheckFMODErrors(_geo->addPolygon(_directOclusion, _reverbOcclusion, true, 4, verts, &polygonIndex));
 	indexes[3] = polygonIndex;
-
+	
 	return false;
 }
 
 void WallComponent::render(AppObject * obj)
 {
+	//GraphicManager::drawRect(obj->getRect(), { 0,0,0,255 });
 	
 }
 

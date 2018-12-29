@@ -22,7 +22,7 @@ bool ListenerComponent::init(AppObject * obj)
 void ListenerComponent::tick(AppObject * obj)
 {
 	changePosition3D(obj->getXMiddle(), 0, obj->getYMiddle());
-	changeOrientation(obj->getFacing().x,0.f, -obj->getFacing().y);
+	//changeOrientation(obj->getFacing().x,0.f, -obj->getFacing().y);
 }
 
 void ListenerComponent::release(AppObject * obj)

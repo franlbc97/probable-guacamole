@@ -41,7 +41,7 @@ void PlayerControllerComponent::tick(AppObject * obj)
 	int x, y;
 	SDL_GetMouseState(&x, &y);
 	setFacingByLookingAt(x, y, obj->getXMiddle(),obj->getYMiddle());
-	obj->setFacing(lookingAt.x, lookingAt.y);
+	//obj->setFacing(lookingAt.x, lookingAt.y);
 	//go up
 	if (keys.at(SDLK_w)) {
 		obj->move(0, -5);

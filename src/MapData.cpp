@@ -132,7 +132,7 @@ void Properties::getValue(const string&name, string&value){
 		value = _stringValues.at(name);
 	}
 	catch (out_of_range){
-		printf(" value %s not found, you get null string \n", name.c_str());
+		printf("value %s not found, you get null string \n", name.c_str());
 		value = "";
 	}
 }
@@ -141,7 +141,7 @@ void Properties::getValue(const string&name , int&value){
 		value = _intValues.at(name);
 	}
 	catch (out_of_range){
-		printf(" value %s not found, you get a 0\n", name.c_str());
+		printf("value %s not found, you get a 0\n", name.c_str());
 		value = NULL;
 	}
 }

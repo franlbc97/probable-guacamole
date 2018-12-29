@@ -142,6 +142,7 @@
     <ClCompile Include="..\src\MoveComponent.cpp" />
     <ClCompile Include="..\src\PlayerControllerComponent.cpp" />
     <ClCompile Include="..\src\RectRenderComponent.cpp" />
+    <ClCompile Include="..\src\Reverb3DComponent.cpp" />
     <ClCompile Include="..\src\SoundComponent.cpp" />
     <ClCompile Include="..\src\SoundManager.cpp" />
     <ClCompile Include="..\src\WallComponent.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="..\src\MoveComponent.h" />
     <ClInclude Include="..\src\PlayerControllerComponent.h" />
     <ClInclude Include="..\src\RectRenderComponent.h" />
+    <ClInclude Include="..\src\Reverb3DComponent.h" />
     <ClInclude Include="..\src\SoundComponent.h" />
     <ClInclude Include="..\src\SoundManager.h" />
     <ClInclude Include="..\src\Utilities.h" />

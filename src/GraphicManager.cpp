@@ -94,3 +94,39 @@ void GraphicManager::drawLine(const int & x1, const int & y1, const int & x2, co
 	SDL_SetRenderDrawColor(renderer_, color.r, color.g, color.b, color.a);
 	SDL_RenderDrawLine(renderer_, x1, y1, x2, y2);
 }
+
+void GraphicManager::drawCircle(const int & _x, const int & _y, const int &radius, SDL_Color color)
+{
+	setColor(color.r, color.g, color.b, color.a);
+	int x = radius - 1;
+	int y = 0;
+	int tx = 1;
+	int ty = 1;
+	int err = tx - (radius << 1); // shifting bits left by 1 effectively
+								  // doubles the value. == tx - diameter
+	while (x >= y)
+	{
+		//  Each of the following renders an octant of the circle
+		SDL_RenderDrawPoint(renderer_, _x + x, _y - y);
+		SDL_RenderDrawPoint(renderer_, _x + x, _y + y);
+		SDL_RenderDrawPoint(renderer_, _x - x, _y - y);
+		SDL_RenderDrawPoint(renderer_, _x - x, _y + y);
+		SDL_RenderDrawPoint(renderer_, _x + y, _y - x);
+		SDL_RenderDrawPoint(renderer_, _x + y, _y + x);
+		SDL_RenderDrawPoint(renderer_, _x - y, _y - x);
+		SDL_RenderDrawPoint(renderer_, _x - y, _y + x);
+
+		if (err <= 0)
+		{
+			y++;
+			err += ty;
+			ty += 2;
+		}
+		if (err > 0)
+		{
+			x--;
+			tx += 2;
+			err += tx - (radius << 1);
+		}
+	}
+}

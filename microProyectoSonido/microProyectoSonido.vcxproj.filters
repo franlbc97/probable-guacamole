@@ -60,6 +60,9 @@
     <ClCompile Include="..\src\MoveComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Reverb3DComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\errcheck.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Utilities.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Reverb3DComponent.h">
+      <Filter>Source Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

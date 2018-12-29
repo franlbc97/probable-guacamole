@@ -1,8 +1,11 @@
 #include "SoundManager.h"
 #include <iostream>
 #include <string>
+
+#include <list>
 static FMOD::System *_system;
 static FMOD::Geometry * _geo;
+static std::list<FMOD::Reverb3D*>reverbs;
 bool SoundManager::init()
 {
 	if (CheckFMODErrors(FMOD::System_Create(&_system)))
@@ -13,7 +16,7 @@ bool SoundManager::init()
 		return true;
 	if(CheckFMODErrors(_system->set3DSettings(1.0f, 100.f, 1.0f)))
 		return true;
-	if(CheckFMODErrors(_system->createGeometry(150, 150,&_geo)))
+	if(CheckFMODErrors(_system->createGeometry(300,1000,&_geo)))
 		return true;
 	_geo->setActive(true);
 	return false;
@@ -54,16 +57,20 @@ bool SoundManager::CheckFMODErrors(FMOD_RESULT r)
 		return false;
 }
 
-void SoundManager::createZoneReverb(FMOD_REVERB_PROPERTIES prop, const int & x, const int & y, const float & maxDistance)
+
+
+FMOD::Reverb3D* SoundManager::createZoneReverb(FMOD_REVERB_PROPERTIES prop, const int & x, const int & y, const float & maxDistance)
 {
 	FMOD::Reverb3D* reverb;
 	CheckFMODErrors(_system->createReverb3D(&reverb));
 	CheckFMODErrors(reverb->setProperties(&prop));
 	FMOD_VECTOR vec;
-	vec.x = x;
+	vec.x = float(x);
 	vec.y = 0;
-	vec.z = y;
+	vec.z = float(y);
+	
 	CheckFMODErrors(reverb->set3DAttributes(&vec, maxDistance/2.f, maxDistance));
+	return reverb;
 }
 
 FMOD_REVERB_PROPERTIES SoundManager::getPresetReverbProperties(std::string name)
