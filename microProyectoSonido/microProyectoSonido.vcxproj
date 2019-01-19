@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\AppObject.cpp" />
     <ClCompile Include="..\src\CollisionWorld.cpp" />
     <ClCompile Include="..\src\Component.cpp" />
     <ClCompile Include="..\src\GraphicManager.cpp" />

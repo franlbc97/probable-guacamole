@@ -46,6 +46,7 @@ public:
 		return false;
 	}
 
+	
 	void initScene() {
 		rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
 		buildMap("a");
