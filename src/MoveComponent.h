@@ -1,6 +1,9 @@
 #pragma once
 #include "Component.h"
 
+/// <summary>
+/// Component for movement
+/// </summary>
 class MoveComponent :
 	public Component
 {
@@ -25,7 +28,7 @@ public:
 	/// <param name="max">The max amount of movement</param>
 	MoveComponent(float max);
 	/// <summary>
-	/// The destructor
+	/// The destructor of the component
 	/// </summary>
 	~MoveComponent();
 	/// <summary>
@@ -60,7 +63,7 @@ public:
 	/// Returns the the type of the component
 	/// </summary>
 	/// <returns>"MoveComponent" in every case</returns>
-	virtual const char * getType() ;
+	virtual const char * getType();
 
 private:
 	float maxVelocity;

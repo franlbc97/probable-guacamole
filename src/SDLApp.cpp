@@ -11,13 +11,16 @@
 #include "WallComponent.h"
 
 
+
 SDLApp::SDLApp() :running_(1) {
 
 }
 
+
 SDLApp::~SDLApp()
 {
 }
+
 
 bool SDLApp::initDependencies()
 {
@@ -37,12 +40,13 @@ bool SDLApp::initDependencies()
 	return false;
 }
 
+
 void SDLApp::initScene()
 {
 
 	rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
 	buildMap("a");
-
+	
 
 	AppObject * appObj = new AppObject();
 	appObjects.push_back(appObj);
@@ -59,6 +63,7 @@ void SDLApp::initScene()
 
 }
 
+
 void SDLApp::closeApp()
 {
 
@@ -74,15 +79,18 @@ void SDLApp::closeApp()
 	SoundManager::release();
 }
 
+
 bool SDLApp::isRunning()
 {
 	return running_;
 }
 
+
 void SDLApp::setRunning(bool nValue)
 {
 	running_ = nValue;
 }
+
 
 void SDLApp::handleInput()
 {
@@ -119,6 +127,7 @@ void SDLApp::handleInput()
 
 }
 
+
 void SDLApp::tick()
 {
 	SoundManager::tick();
@@ -126,6 +135,7 @@ void SDLApp::tick()
 	for (auto it : appObjects)
 		it->tick();
 }
+
 
 void SDLApp::render()
 {

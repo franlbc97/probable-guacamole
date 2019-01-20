@@ -3,12 +3,20 @@
 #include <fmod.hpp>
 
 /// <summary>
-/// Listener component that uses the FMOD, son of Component
+/// Listener componet
 /// </summary>
+/// <seealso cref="Component" />
 class ListenerComponent : public Component
 {
 public:
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="ListenerComponent"/> class.
+	/// </summary>
 	ListenerComponent() {};
+	/// <summary>
+	/// Finalizes an instance of the <see cref="ListenerComponent"/> class.
+	/// </summary>
 	~ListenerComponent() {};
 
 	/// <summary>
@@ -19,7 +27,7 @@ public:
 	virtual bool init(AppObject * obj);
 	
 	/// <summary>
-	/// 
+	/// Abstract virtual method for rendering the component if needed
 	/// </summary>
 	/// <param name="obj">The object that is asociated with component</param>
 	virtual void render(AppObject * obj);
@@ -34,7 +42,9 @@ public:
 	/// </summary>
 	/// <param name="e">the event</param>
 	/// <param name="obj">The object that is asociated with component</param>
-	/// <returns>false in every case</returns>
+	/// <returns>
+	/// false in every case
+	/// </returns>
 	virtual bool handleInput(SDL_Event & e, AppObject * obj);
 
 	/// <summary>
@@ -46,11 +56,13 @@ public:
 	/// <summary>
 	/// For knowing the type of the component
 	/// </summary>
-	/// <returns>returns in every case "ListenerComponent"</returns>
-	virtual const char * getType() { return "ListenerComponent"; }
+	/// <returns>
+	/// returns in every case "ListenerComponent"
+	/// </returns>
+	virtual const char * getType();
 
 	/// <summary>
-	/// For changing the position of the listener 
+	/// For changing the position of the listener
 	/// </summary>
 	/// <param name="x">X position</param>
 	/// <param name="y">Y position</param>

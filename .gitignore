@@ -8,6 +8,8 @@
 *.lo
 *.o
 *.obj
+*.ipdb
+*.iobj
 
 # Precompiled Headers
 *.gch

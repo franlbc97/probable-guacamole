@@ -2,6 +2,9 @@
 #include <list>
 class AppObject;
 class Component;
+/// <summary>
+/// The App class
+/// </summary>
 class SDLApp
 {
 
@@ -19,7 +22,9 @@ public:
 	/// <summary>
 	/// Initializes the dependencies of the app
 	/// </summary>
-	/// <returns>true if something went wrong, false every other case</returns>
+	/// <returns>
+	/// true if something went wrong, false every other case
+	/// </returns>
 	bool initDependencies();
 
 	/// <summary>
@@ -35,7 +40,9 @@ public:
 	/// <summary>
 	/// For checking if the app is running
 	/// </summary>
-	/// <returns>True if running, false every other case</returns>
+	/// <returns>
+	/// True if running, false every other case
+	/// </returns>
 	bool isRunning();
 
 	/// <summary>
@@ -53,14 +60,22 @@ public:
 	/// For update every object of the scene
 	/// </summary>
 	void tick();
+
 	/// <summary>
 	/// For render every object of the scene
 	/// </summary>
 	void render();
 
 private:
+	/// <summary>
+	/// The application objects
+	/// </summary>
 	std::list<AppObject*> appObjects;
 	Component * rectRender;
+
+	/// <summary>
+	/// The running value
+	/// </summary>
 	bool running_;
 
 	/// <summary>
