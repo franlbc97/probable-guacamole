@@ -230,7 +230,13 @@ public:
 	/// <returns> Rect of the AppObject</returns>
 	SDL_Rect &getRect() { return rect_; };
 
-protected:	
+	/// <summary>
+	/// For getting the id of the AppObject
+	/// </summary>
+	/// <returns>id of the AppObject</returns>
+	int getId();
+
+protected:
 	Vector2D facing;
 	int _id;
 	std::list<Component*> componentList;

@@ -5,19 +5,25 @@
 class SoundComponent : public Component
 {
 public:
+	/// <summary>
+	/// The constructor of the Component
+	/// </summary>
+	/// <param name="file">Teh file</param>
 	SoundComponent(const char * file) {
 		file_ = file;
 	}
 
 	virtual ~SoundComponent() { sound_->release(); }
 
-	// Heredado vía Component
+	
 	virtual bool init(AppObject * obj);
 	virtual void render(AppObject * obj);
 	virtual void tick(AppObject * obj);
-	virtual const char * getType();
-
 	virtual bool handleInput(SDL_Event & e, AppObject * obj);
+	virtual void release(AppObject * obj);
+	virtual const char * getType();
+	void togglePause();
+
 
 	void changePosition3D(const int & x, const int & y, const int & z);
 
@@ -29,9 +35,7 @@ public:
 		return vol;
 	};
 
-	void togglePause();
 
-	virtual void release(AppObject * obj);
 
 private:
 	const char * file_;

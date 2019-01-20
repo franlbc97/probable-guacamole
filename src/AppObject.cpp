@@ -23,3 +23,8 @@ AppObject::AppObject()
 	componentList = std::list<Component*>();
 	CollisionWorld::addRect(&rect_, _id);
 }
+
+int AppObject::getId()
+{
+	return _id;
+}
