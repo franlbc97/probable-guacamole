@@ -1,7 +1,7 @@
 # Prerequisites
 *.d
 *.ilk
-
+intermediate
 .vs
 # Compiled Object files
 *.slo
