@@ -8,6 +8,7 @@
 #include "SoundComponent.h"
 #include "AppObject.h"
 #include "MapData.h"
+#include "Reverb3DComponent.h"
 #include "WallComponent.h"
 
 
@@ -45,7 +46,7 @@ void SDLApp::initScene()
 {
 
 	rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
-	buildMap("a");
+	buildMap("../Media/Maps/mapaNormal.tmx");
 	
 
 	AppObject * appObj = new AppObject();
@@ -53,10 +54,15 @@ void SDLApp::initScene()
 
 	appObj->setX(500 - 15);
 	appObj->setY(500 - 15);
+	appObj->setW(10);
+	appObj->setH(10);
+	
 	appObj->addComponent(rectRender);
 	appObj->addComponent(new PlayerControllerComponent());
 	ListenerComponent * lc = new ListenerComponent();
 	appObj->addComponent(lc);
+
+
 
 
 
@@ -149,7 +155,7 @@ void SDLApp::render()
 void SDLApp::buildMap(std::string file)
 {
 
-	TMXReader::MapData mapilla("../Media/Maps/mapaNormal.tmx");
+	TMXReader::MapData mapilla(file);
 	for (size_t i = 0; i < mapilla.totalObjGroups(); i++)
 	{
 		TMXReader::Objectgroup* objGroup = mapilla.getObjectGroup(i);
@@ -171,7 +177,7 @@ void SDLApp::buildMap(std::string file)
 		else if (objGroup->getName() == "Zones") {
 			for (size_t j = 0; j < objGroup->groupSize(); j++)
 			{
-				/*
+				
 				int x, y;
 				x = objGroup->at(j)->getX();
 				y = objGroup->at(j)->getY();
@@ -184,7 +190,7 @@ void SDLApp::buildMap(std::string file)
 				reverbObj->setH(objGroup->at(j)->getH());
 				reverbObj->addComponent(new Reverb3DComponent(SoundManager::getPresetReverbProperties(objGroup->at(j)->getType())));
 				appObjects.push_back(reverbObj);
-				*/
+				
 			}
 		}
 	}

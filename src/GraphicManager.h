@@ -60,12 +60,28 @@ public:
 	static SDL_Rect getRectRelativeToCamera(const SDL_Rect & r);
 
 	/// <summary>
+	/// Gets the point relative to camera.
+	/// </summary>
+	/// <param name="p">The point</param>
+	/// <returns></returns>
+	static SDL_Point getPointRelativeToCamera(const SDL_Point & p);
+
+	static SDL_Rect getCamera();
+
+	/// <summary>
+	/// Gets the camera point.
+	/// </summary>
+	/// <returns>The camera point</returns>
+	static SDL_Point getCameraPoint();
+
+	/// <summary>
 	/// For checking if the rect is in camera
 	/// </summary>
 	/// <param name="r">the rect that is gonna be check</param>
 	/// <returns>True if the rect is in camera, false in every other case</returns>
 	static bool isInCamera(const SDL_Rect & r);
 
+	
 
 	
 	/// <summary>

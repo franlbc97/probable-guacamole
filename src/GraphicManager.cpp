@@ -58,6 +58,21 @@ SDL_Rect GraphicManager::getRectRelativeToCamera(const SDL_Rect & r)
 	return {r.x-cameraRect_.x,r.y - cameraRect_.y,r.w,r.h};
 }
 
+SDL_Point GraphicManager::getPointRelativeToCamera(const SDL_Point & p)
+{
+	return { p.x + cameraRect_.x,p.y + cameraRect_.y };
+}
+
+SDL_Rect GraphicManager::getCamera()
+{
+	return cameraRect_;
+}
+
+SDL_Point GraphicManager::getCameraPoint()
+{
+	return {cameraRect_.x,cameraRect_.y};
+}
+
 bool GraphicManager::isInCamera(const SDL_Rect & r)
 {
 	SDL_Rect inter;

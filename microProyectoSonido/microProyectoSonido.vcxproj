@@ -153,6 +153,7 @@
     <ClCompile Include="..\src\CollisionWorld.cpp" />
     <ClCompile Include="..\src\Component.cpp" />
     <ClCompile Include="..\src\GraphicManager.cpp" />
+    <ClCompile Include="..\src\InputManager.cpp" />
     <ClCompile Include="..\src\ListenerComponent.cpp" />
     <ClCompile Include="..\src\main.cpp">
       <DeploymentContent>false</DeploymentContent>
@@ -173,6 +174,7 @@
     <ClInclude Include="..\src\Component.h" />
     <ClInclude Include="..\src\errcheck.h" />
     <ClInclude Include="..\src\GraphicManager.h" />
+    <ClInclude Include="..\src\InputManager.h" />
     <ClInclude Include="..\src\SDLApp.h" />
     <ClInclude Include="..\src\ListenerComponent.h" />
     <ClInclude Include="..\src\MapData.h" />

@@ -1,6 +1,7 @@
 #include "PlayerControllerComponent.h"
 #include "AppObject.h"
 #include "GraphicManager.h"
+#include "InputManager.h"
 
 
 PlayerControllerComponent::PlayerControllerComponent()
@@ -32,8 +33,8 @@ void PlayerControllerComponent::render( AppObject * obj)
 	x2 = x1 + lookingAt.x*lengtLine;
 	y2 = y1 + lookingAt.y*lengtLine;
 
-	GraphicManager::drawLine(x1,y1,x2,y2, { 255,0,0,255 });
-	GraphicManager::drawRect({ x2 - 5,y2 - 5,10,10 }, { 255, 0, 0, 255 });
+	
+	GraphicManager::drawRect(GraphicManager::getRectRelativeToCamera({ x2 - 5,y2 - 5,10,10 }), { 255, 0, 0, 255 });
 
 	
 }
@@ -41,27 +42,30 @@ void PlayerControllerComponent::render( AppObject * obj)
 
 void PlayerControllerComponent::tick(AppObject * obj)
 {
-	int x, y;
-	SDL_GetMouseState(&x, &y);
-	setFacingByLookingAt(x, y, obj->getXMiddle(),obj->getYMiddle());
-	//obj->setFacing(lookingAt.x, lookingAt.y);
+	SDL_Point p = InputManager::getMousePosition(GraphicManager::getCameraPoint());
+	setFacingByLookingAt(p.x, p.y, obj->getXMiddle(),obj->getYMiddle());
+	obj->setFacing(lookingAt.x, lookingAt.y);
 	//go up
 	if (keys.at(SDLK_w)) {
-		obj->move(0, -5);
+		if (obj->move(0, -5)) {
+		}
 	}
 	//go down
 	else if (keys.at(SDLK_s)) {
-		obj->move(0, 5);
+		if (obj->move(0, 5)) {
+			
+		}
 	}
 	//go left
 	if (keys.at(SDLK_a)) {
-		obj->move(-5, 0);
+		if (obj->move(-5,0)) {
+		}
 
 	}
 	//go right
 	else if (keys.at(SDLK_d)) {
-		obj->move(5, 0);
-
+		if (obj->move(5 ,0)) {
+		}
 	}
 	
 }

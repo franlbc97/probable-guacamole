@@ -48,7 +48,7 @@ public:
 	
 
 private:
-
+	FMOD::Geometry* geo_;
 	int polygonIndex;
 	float _directOclusion;
 	float _reverbOcclusion;

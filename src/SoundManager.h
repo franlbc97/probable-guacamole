@@ -26,7 +26,6 @@ public:
 	/// </summary>
 	/// <returns>the FMOD::System of the manager</returns>
 	static FMOD::System * getSystem();
-	static FMOD::Geometry * getGeometry();
 	/// <summary>
 	/// for checking errors that involvolves FMOD
 	/// </summary>
@@ -49,5 +48,13 @@ public:
 	/// <param name="name">the name of the preset</param>
 	/// <returns>the preset that is asked for, if the preset does not exist returns the generic one</returns>
 	static FMOD_REVERB_PROPERTIES getPresetReverbProperties(std::string name);
+
+	/// <summary>
+	/// Creates the geometry.
+	/// </summary>
+	/// <param name="maxPolygons">The maximum polygons.</param>
+	/// <param name="maxVerts">The maximum verts.</param>
+	/// <returns>Pointer to the geometry, nullptr if fails</returns>
+	static FMOD::Geometry * createGeometry(const int & maxPolygons, const int & maxVerts);
 };
 

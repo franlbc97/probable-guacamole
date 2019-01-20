@@ -16,7 +16,8 @@ bool RectRenderComponent::init(AppObject * obj)
 void RectRenderComponent::render( AppObject * obj)
 {
 	if (GraphicManager::isInCamera(obj->getRect())) {
-		GraphicManager::drawRect(obj->getRect(), _color);
+		GraphicManager::drawRect(GraphicManager::getRectRelativeToCamera(obj->getRect()), _color);
+		
 	}
 }
 

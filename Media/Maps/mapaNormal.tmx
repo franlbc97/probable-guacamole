@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="25">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="63">
  <layer id="1" name="Capa de Patrones 1" width="40" height="24">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -29,25 +29,29 @@
 </data>
  </layer>
  <objectgroup id="2" name="Walls">
-  <object id="1" x="118" y="402" width="500" height="32"/>
-  <object id="4" x="8" y="4" width="1282" height="32"/>
-  <object id="5" x="3" y="736" width="1282" height="32"/>
-  <object id="6" x="-36" y="-26" width="34" height="806"/>
-  <object id="7" x="1245" y="-31" width="34" height="806"/>
-  <object id="11" x="448" y="-34" width="46" height="388"/>
-  <object id="19" x="767" y="500" width="542" height="44"/>
-  <object id="21" x="-18" y="608" width="272" height="32"/>
-  <object id="23" x="781" y="-5" width="34" height="806"/>
-  <object id="24" x="221" y="42" width="46" height="388"/>
+  <properties>
+   <property name="file" type="file" value="../Sounds/kazoo.wav"/>
+  </properties>
+  <object id="26" x="658.909" y="46.1818" width="27.2727" height="533.333"/>
+  <object id="27" x="396.97" y="48.4851" width="30.3033" height="387.878"/>
+  <object id="57" x="656.061" y="530.303" width="657.576" height="45.4542"/>
+  <object id="58" x="-12.1213" y="412.122" width="418.182" height="33.3324"/>
+  <object id="60" x="-15.1516" y="489.394" width="257.576" height="33.3324"/>
+  <object id="61" x="200" y="503.031" width="30.3033" height="169.696"/>
+  <object id="62" x="363.636" y="575.758" width="200" height="51.5152">
+   <properties>
+    <property name="k" type="file" value="../Sounds/kazoo.wav"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="3" name="Zones">
-  <object id="8" type="Cave" x="1252" y="-136" width="470" height="470">
+  <object id="8" type="Cave" x="-28.7273" y="-16.4848" width="406" height="427.333">
    <ellipse/>
   </object>
-  <object id="16" type="Concert hall" x="1362" y="10" width="556" height="556">
+  <object id="16" type="Concert hall" x="707.455" y="6.9697" width="556" height="556">
    <ellipse/>
   </object>
-  <object id="20" type="Bathroom" x="-7" y="441" width="178" height="178">
+  <object id="59" type="Bathroom" x="12.1515" y="504.515" width="190.848" height="175.818">
    <ellipse/>
   </object>
  </objectgroup>

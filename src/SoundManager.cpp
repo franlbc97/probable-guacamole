@@ -4,7 +4,6 @@
 
 #include <list>
 static FMOD::System *_system;
-static FMOD::Geometry * _geo;
 static std::list<FMOD::Reverb3D*>reverbs;
 bool SoundManager::init()
 {
@@ -16,9 +15,8 @@ bool SoundManager::init()
 		return true;
 	if(CheckFMODErrors(_system->set3DSettings(1.0f, 100.f, 1.0f)))
 		return true;
-	if(CheckFMODErrors(_system->createGeometry(300,1000,&_geo)))
-		return true;
-	_geo->setActive(true);
+	
+
 	return false;
 }
 
@@ -39,19 +37,13 @@ FMOD::System * SoundManager::getSystem()
 	return _system;
 }
 
-FMOD::Geometry * SoundManager::getGeometry()
-{
-	return _geo;
-}
 
 bool SoundManager::CheckFMODErrors(FMOD_RESULT r)
 {
 
 		if (r != FMOD_OK) {
 			std::cout << FMOD_ErrorString(r) << std::endl;
-			// printf("FMOD error %d - %s", result, FMOD_ErrorString(result));
 			return true;
-			//exit(-1);
 		}
 	
 		return false;
@@ -126,5 +118,12 @@ FMOD_REVERB_PROPERTIES SoundManager::getPresetReverbProperties(std::string name)
 	std::cout << "the preset " << name << " is not defined in FMOD, so fuck you" << std::endl;
 	return FMOD_PRESET_GENERIC;
 }
+
+FMOD::Geometry * SoundManager::createGeometry(const int & maxPolygons, const int & maxVerts)
+{
+	FMOD::Geometry * geo = nullptr;
+	return (CheckFMODErrors(_system->createGeometry(maxPolygons, maxVerts, &geo))) ?nullptr : geo;
+}
+
 
 

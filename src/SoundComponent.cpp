@@ -57,13 +57,13 @@ void SoundComponent::changePosition3D(const int & x, const int & y, const int & 
 {
 	FMOD_VECTOR pos;
 	FMOD_VECTOR vel;
-	channelSound_->get3DAttributes(&pos, &vel);
+	channelSound_->get3DAttributes(&pos, NULL);
 
-	pos.x = (x)* SCALE_FACTOR;
-	pos.y = (y)* SCALE_FACTOR;
-	pos.z = (z)* SCALE_FACTOR;
+	pos.x = (x) ;
+	pos.y = (y);
+	pos.z = (z);
 
-	(channelSound_->set3DAttributes(&pos, &vel));
+	(channelSound_->set3DAttributes(&pos, NULL));
 }
 void SoundComponent::setVolume(const float & nVol)
 {
