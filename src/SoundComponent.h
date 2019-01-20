@@ -74,11 +74,7 @@ public:
 	/// For getting the value of the volume
 	/// </summary>
 	/// <returns>the value of the volume</returns>
-	inline float getVolume() {
-		float vol;
-		channelSound_->getVolume(&vol);
-		return vol;
-	};
+	float getVolume();
 
 
 

@@ -22,6 +22,21 @@
     <Filter Include="Source Files\Managers">
       <UniqueIdentifier>{90721e44-215f-406c-b82c-d662a52dd682}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{59f06db7-9388-425e-bb96-2d2a62cfb74b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{2aa0636d-0ace-4f3d-94b7-8e1abc32f35a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Maps">
+      <UniqueIdentifier>{c60ba0ec-02bc-4ba5-b02b-0ed3ca44eca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Kernel">
+      <UniqueIdentifier>{4b7b3be7-fe8e-4e2d-933a-688a8de4cdda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Kernel">
+      <UniqueIdentifier>{efb6f304-6b78-42ca-b894-4c8c3e559d7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -60,58 +75,64 @@
     <ClCompile Include="..\src\MoveComponent.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\AppObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Reverb3DComponent.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SDLApp.cpp">
+      <Filter>Source Files\Kernel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\AppObject.cpp">
+      <Filter>Source Files\Kernel</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\errcheck.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\AppObject.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\SoundComponent.h">
-      <Filter>Source Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\RectRenderComponent.h">
-      <Filter>Source Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Component.h">
-      <Filter>Source Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\ListenerComponent.h">
-      <Filter>Source Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\WallComponent.h">
-      <Filter>Source Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\PlayerControllerComponent.h">
-      <Filter>Source Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\MoveComponent.h">
-      <Filter>Source Files\Components</Filter>
+    <ClInclude Include="..\src\SDLApp.h">
+      <Filter>Header Files\Kernel</Filter>
     </ClInclude>
     <ClInclude Include="..\src\MapData.h">
-      <Filter>Source Files\Maps</Filter>
+      <Filter>Header Files\Maps</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\CollisionWorld.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\GraphicManager.h">
-      <Filter>Source Files\Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\SoundManager.h">
-      <Filter>Source Files\Managers</Filter>
+    <ClInclude Include="..\src\AppObject.h">
+      <Filter>Header Files\Kernel</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Utilities.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CollisionWorld.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GraphicManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SoundManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Component.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\ListenerComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\MoveComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\PlayerControllerComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\RectRenderComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Reverb3DComponent.h">
-      <Filter>Source Files\Components</Filter>
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\SoundComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\WallComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

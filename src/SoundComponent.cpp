@@ -74,6 +74,12 @@ void SoundComponent::setVolume(const float & nVol)
 	vol = nVol;
 	channelSound_->setVolume(nVol);
 }
+float SoundComponent::getVolume()
+{
+	float vol;
+	channelSound_->getVolume(&vol);
+	return vol;
+}
 void SoundComponent::togglePause()
 {
 

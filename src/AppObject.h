@@ -6,7 +6,7 @@
 static int objectNum = 0;
 
 /// <summary>
-/// 
+/// Object of the scene
 /// </summary>
 class AppObject
 {
@@ -103,47 +103,14 @@ public:
 	/// </summary>
 	/// <param name="e">The event</param>
 	/// <returns>True if there is no need of checkin other Objects, false every other case</returns>
-	virtual bool handleInput(SDL_Event & e) {
-		int x, y;
-		switch (e.type)
-		{
-		case SDL_MOUSEBUTTONDOWN:
-			if (e.button.button == SDL_BUTTON_LEFT) {
-				SDL_GetMouseState(&x, &y);
-				if (pointInRect(x, y) && canBeSelected_) {
-					selected_ = true;
-					return true;
-				}
-			}
-			break;
-		case SDL_MOUSEMOTION:
-			if (selected_) {
-				move(e.motion.xrel, e.motion.yrel);
-				return true;
-			}
-			break;
-		case SDL_MOUSEBUTTONUP:
-
-			if (selected_) {
-				selected_ = false;
-				return true;
-			}
-			break;
-		default:
-			break;
-		}
-		for (auto c : componentList) {
-			c->handleInput(e,this);
-		}
-		return false;
-	}
+	virtual bool handleInput(SDL_Event & e);
 
 	/// <summary>
 	/// For checking if the point is inside the object
 	/// </summary>
 	/// <param name="x">The X position of the point</param>
 	/// <param name="y">The Y position of the point</param>
-	/// <returns></returns>
+	/// <returns>true if the point is inside the object, false in every other case</returns>
 	bool pointInRect(int & x, int & y) {
 		SDL_Point p = { x,y };
 		return SDL_PointInRect(&p, &rect_);
@@ -153,33 +120,40 @@ public:
 	/// For getting the X position of the midle of the rect
 	/// </summary>
 	/// <returns>X position of the midle of the rect</returns>
-	int getXMiddle() { return rect_.x + rect_.w / 2; }
+	int getXMiddle();
+
 	/// <summary>
 	/// For getting the Y position of the midle of the rect
 	/// </summary>
 	/// <returns>Y position of the midle of the rect</returns>
-	int getYMiddle() { return rect_.y+rect_.h / 2; }
+	int getYMiddle();
 
 	/// <summary>
 	/// For gettin the X position of the rect
 	/// </summary>
 	/// <returns>X position of the rect</returns>
-	int getX() { return rect_.x; }
+	int getX();
+
+
 	/// <summary>
 	/// For gettin the Y position of the rect
 	/// </summary>
 	/// <returns>Y position of the rect</returns>
-	int getY() { return rect_.y; }
+	int getY();
+
 	/// <summary>
 	/// For gettin the width of the rect
 	/// </summary>
 	/// <returns>Width of the rect</returns>
-	int getW() { return rect_.w; }
+	int getW();
+
 	/// <summary>
-	/// For gettin the X position of the rect
+	/// For gettin the Height of the rect
 	/// </summary>
-	/// <returns>X position of the rect</returns>
-	int getH() { return rect_.h; }
+	/// <returns>Height of the rect</returns>
+	int getH();
+
+
 	/// <summary>
 	/// For setting tha X position of the AppObject
 	/// </summary>
