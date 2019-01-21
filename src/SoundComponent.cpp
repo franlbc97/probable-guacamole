@@ -1,6 +1,7 @@
 #include "SoundComponent.h"
 #include "SoundManager.h"
 #include "AppObject.h"
+#include "GraphicManager.h"
 
 bool SoundComponent::init(AppObject * obj)
 {
@@ -16,6 +17,10 @@ bool SoundComponent::init(AppObject * obj)
 
 void SoundComponent::render( AppObject * obj)
 {
+	float audability;
+	channelSound_->getAudibility(&audability);
+	int color = 255 * audability;
+	GraphicManager::drawRect(obj->getRect(), { 0,(Uint8)color,0});
 
 }
 

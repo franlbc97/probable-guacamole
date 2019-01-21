@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="63">
+<map version="1.2" tiledversion="1.2.1" orientation="orthogonal" renderorder="right-down" width="40" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="70">
  <layer id="1" name="Capa de Patrones 1" width="40" height="24">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -29,26 +29,35 @@
 </data>
  </layer>
  <objectgroup id="2" name="Walls">
-  <properties>
-   <property name="file" type="file" value="../Sounds/kazoo.wav"/>
-  </properties>
   <object id="26" x="658.909" y="46.1818" width="27.2727" height="533.333"/>
   <object id="27" x="396.97" y="48.4851" width="30.3033" height="387.878"/>
   <object id="57" x="656.061" y="530.303" width="657.576" height="45.4542"/>
   <object id="58" x="-12.1213" y="412.122" width="418.182" height="33.3324"/>
   <object id="60" x="-15.1516" y="489.394" width="257.576" height="33.3324"/>
   <object id="61" x="200" y="503.031" width="30.3033" height="169.696"/>
-  <object id="62" x="363.636" y="575.758" width="200" height="51.5152">
+ </objectgroup>
+ <objectgroup id="4" name="Sounds">
+  <object id="65" x="175.758" y="166.667" width="24" height="25.3333">
    <properties>
-    <property name="k" type="file" value="../Sounds/kazoo.wav"/>
+    <property name="file" type="file" value="../Media/Sounds/drop.wav"/>
+   </properties>
+  </object>
+  <object id="66" x="929.548" y="267.422" width="40.1839" height="35.6951">
+   <properties>
+    <property name="file" type="file" value="../Media/Sounds/kazoo.wav"/>
+   </properties>
+  </object>
+  <object id="67" x="92.4853" y="576.848" width="29.3333" height="32">
+   <properties>
+    <property name="file" type="file" value="../Media/Sounds/premio.wav"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="3" name="Zones">
+ <objectgroup id="3" name="Zones" locked="1">
   <object id="8" type="Cave" x="-28.7273" y="-16.4848" width="406" height="427.333">
    <ellipse/>
   </object>
-  <object id="16" type="Concert hall" x="707.455" y="6.9697" width="556" height="556">
+  <object id="16" type="Concert hall" x="699.455" y="-9.0303" width="556" height="556">
    <ellipse/>
   </object>
   <object id="59" type="Bathroom" x="12.1515" y="504.515" width="190.848" height="175.818">

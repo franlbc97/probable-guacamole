@@ -13,7 +13,7 @@ bool SoundManager::init()
 		return true;
 	if(CheckFMODErrors(_system->set3DNumListeners(1)))
 		return true;
-	if(CheckFMODErrors(_system->set3DSettings(1.0f, 100.f, 1.0f)))
+	if(CheckFMODErrors(_system->set3DSettings(1.0f, 75.f, 1.0f)))
 		return true;
 	
 

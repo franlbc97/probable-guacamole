@@ -82,9 +82,13 @@ void Properties::setCustomProperties(rapidxml::xml_node<>* nodo)
 			setValue(name, (proper->first_attribute("value")->value() == "true"));
 			break;
 		case COLOR:
+			setValue(name, (string)proper->first_attribute("value")->value());
+			break;
 		case FILES:
+			setValue(name,(string) proper->first_attribute("value")->value());
+			break;
 		case STRING:
-			setValue(name, proper->first_attribute("value")->value());
+			setValue(name, (string)proper->first_attribute("value")->value());
 			break;
 		case INT:
 		case FLOAT:
@@ -152,7 +156,7 @@ ObjectInfo::ObjectInfo(rapidxml::xml_node<> * nodo) :Properties(nodo)
 		string shape = subnode->name();
 		if (shape == "properties") {
 			subnode = subnode->next_sibling();
-			shape = subnode->name();
+			//shape = subnode->name();
 		}
 		if(shape == "ellipse"){
 			_shape = new Ellipse(getX(), getY(), getW(), getH());

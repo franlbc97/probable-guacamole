@@ -46,7 +46,7 @@ void SDLApp::initScene()
 {
 
 	rectRender = new RectRenderComponent(SDL_Color{ 255,255,255,255 });
-	buildMap("../Media/Maps/mapaNormal.tmx");
+	buildMap("../bin/mapaNormal2.tmx");
 	
 
 	AppObject * appObj = new AppObject();
@@ -191,6 +191,26 @@ void SDLApp::buildMap(std::string file)
 				reverbObj->addComponent(new Reverb3DComponent(SoundManager::getPresetReverbProperties(objGroup->at(j)->getType())));
 				appObjects.push_back(reverbObj);
 				
+			}
+		}
+		else if (objGroup->getName() == "Sounds") {
+			for (size_t j = 0; j < objGroup->groupSize(); j++)
+			{
+				int x, y;
+				x = objGroup->at(j)->getX();
+				y = objGroup->at(j)->getY();
+				AppObject * obj = new AppObject();
+				obj->setCanBeSeleceted(false);
+				obj->setCollidable(false);
+				obj->setX(x);
+				obj->setY(y);
+				obj->setW(objGroup->at(j)->getW());
+				obj->setH(objGroup->at(j)->getH());
+				string soundFile;
+				objGroup->at(j)->getValue("file", soundFile);
+				if(soundFile != "")
+					obj->addComponent(new SoundComponent(soundFile.c_str()));
+				appObjects.push_back(obj);
 			}
 		}
 	}

@@ -47,6 +47,14 @@ public:
 	virtual void release(AppObject * obj);
 	virtual const char * getType();
 
+
+	/// <summary>
+	/// Changes the reverb position.
+	/// </summary>
+	/// <param name="x">The x.</param>
+	/// <param name="y">The y.</param>
+	void changeReverbPosition(const int & x, const int & y);
+
 private:
 	float maxDistance_;
 	FMOD_REVERB_PROPERTIES props_;

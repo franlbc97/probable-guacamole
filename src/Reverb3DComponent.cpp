@@ -49,3 +49,13 @@ const char * Reverb3DComponent::getType()
 {
 	return "Reverb3D";
 }
+
+void Reverb3DComponent::changeReverbPosition(const int & x, const int & y)
+{
+
+	FMOD_VECTOR pos;
+	reverb_->get3DAttributes(&pos, NULL, NULL);
+	pos.x = x;
+	pos.z = y;
+	reverb_->set3DAttributes(&pos, NULL, NULL);
+}

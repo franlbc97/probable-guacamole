@@ -45,6 +45,33 @@ public:
 	/// <returns></returns>
 	virtual const char * getType();
 
+	/// <summary>
+	/// Gets the direct occlusion.
+	/// </summary>
+	/// <returns></returns>
+	float getDirectOcclusion();
+
+	/// <summary>
+	/// Sets the direct occlusion.
+	/// </summary>
+	/// <param name="newValue">The new value.</param>
+	void setDirectOcclusion(const float & newValue);
+	
+	
+	/// <summary>
+	/// Gets the reverb occlusion.
+	/// </summary>
+	/// <returns></returns>
+	float getReverbOcclusion();
+
+	
+	/// <summary>
+	/// Sets the reverb occlusion.
+	/// </summary>
+	/// <param name="newValue">The new value.</param>
+	void setReverbOcclusion(const float & newValue);
+	
+
 	
 
 private:

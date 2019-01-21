@@ -127,3 +127,40 @@ const char * WallComponent::getType()
 {
 	return "WallComponent";
 }
+
+float WallComponent::getDirectOcclusion()
+{
+	return _directOclusion;
+}
+
+void WallComponent::setDirectOcclusion(const float & newValue)
+{
+	int lenght;
+	geo_->getNumPolygons(&lenght);
+	for (size_t i = 0; i < lenght; i++)
+	{
+		
+		geo_->setPolygonAttributes(i, newValue, NULL, NULL);
+
+	}
+	_directOclusion = newValue;
+}
+
+float WallComponent::getReverbOcclusion()
+{
+	return _reverbOcclusion;
+}
+
+void WallComponent::setReverbOcclusion(const float & newValue)
+{
+	int lenght;
+	geo_->getNumPolygons(&lenght);
+	for (size_t i = 0; i < lenght; i++)
+	{
+
+		geo_->setPolygonAttributes(i, newValue, NULL, NULL);
+
+	}
+	_directOclusion = newValue;
+	
+}

@@ -96,7 +96,7 @@
     <Xdcmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(OutDir)$(TargetName).xml</OutputFile>
-      <DocumentLibraryDependencies>true</DocumentLibraryDependencies>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
     <Manifest>
       <GenerateCatalogFiles>false</GenerateCatalogFiles>
@@ -128,7 +128,7 @@
     <Xdcmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <OutputFile>$(OutDir)$(TargetName).xml</OutputFile>
-      <DocumentLibraryDependencies>true</DocumentLibraryDependencies>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
     </Xdcmake>
     <Manifest>
       <GenerateCatalogFiles>false</GenerateCatalogFiles>
