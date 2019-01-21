@@ -31,6 +31,7 @@ Nuestro objetivo era conseguir un motor sencillo para poder hacer un juego senci
     - Posición
     - Orientación
 - Crear documentación
+
 ---
 ## 2. Desarrollo
 Como dijo Jack el Destripador, vayamos por partes.
@@ -110,4 +111,4 @@ Haciendo un resumen con la lista de características anterior hemos conseguido l
 
 Hubiera estado bien tener algo jugable a partir de este *motor*, pero no ha sido posible, por varios motivos.
 
-Gracias a esto hemos conseguido aprender más la API de `FMOD` y perfeccionado nuestras habilidades a la hora de programar. 
+Gracias a esto hemos conseguido aprender más la API de `FMOD` y perfeccionado nuestras habilidades a la hora de programar.
